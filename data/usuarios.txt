@@ -1,0 +1,9 @@
+0,adulto,Sabrina Bryan,41,100
+1,idoso,Patricia Wolf,109,600
+2,adulto,Georgina Kramer,38,300
+3,adulto,Mabel York,39,300
+4,adulto,Anita Davila,38,500
+5,criança,Violet Hodges,11,200,2
+6,criança,Lisa Mayer,11,100,2
+7,criança,Gertrude Nunez,11,50,0
+8,criança,Kathleen Clark,11,200,3

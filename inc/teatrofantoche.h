@@ -1,0 +1,4 @@
+#ifndef TEATRO_FANTOCHE_H
+#define TEATRO_FANTOCHE_H
+
+#endif//TEATRO_FANTOCHE_H
