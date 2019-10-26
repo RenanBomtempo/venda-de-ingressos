@@ -3,6 +3,8 @@
 
 #include <usuario.h>
 
+using namespace std;
+
 class Crianca : public Usuario {
     private:
         int responsavel;

@@ -3,10 +3,12 @@
 
 #include <string>
 
+using namespace std;
+
 class Usuario {
     private:
         int id;
-        string nome;
+        std::string nome;
         int idade;
         float saldo;
         int tipo;

@@ -4,6 +4,8 @@
 #include <usuario.h>
 #include <vector>
 
+using namespace std;
+
 class Adulto : public Usuario {
     private:
         vector<int> dependentes;
