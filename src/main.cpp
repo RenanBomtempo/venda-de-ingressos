@@ -1,7 +1,7 @@
 // Usuario
 #include "usuario.h"
-#include "crianca.h"
 #include "adulto.h"
+#include "crianca.h"
 #include "idoso.h"
 // Evento
 #include "evento.h"
@@ -25,16 +25,18 @@ void print_test(Usuario a){
 
 int main(){
     Adulto teste_a(1, "Ana Maria", 30, 1500.0);
-    Crianca teste_c(0, "Jorge", 10, 100.0, &teste_a);
-    teste_a.add_dependente(teste_c);
+    Crianca teste_c1(0, "Jorge", 10, 100.0, &teste_a);
+    Crianca teste_c2(3, "Joana", 10, 200.0, &teste_a);
     Idoso teste_i(2, "Arlindo", 50, 500.0);
 
-    print_test(teste_c);
-    cout << "Responsavel:" <<  teste_c.get_responsavel()->get_id() << endl;
+    print_test(teste_c1);
+    cout << "Responsavel:" <<  teste_c1.get_responsavel()->get_id() << endl;
+    print_test(teste_c2);
+    cout << "Responsavel:" <<  teste_c2.get_responsavel()->get_id() << endl;
     print_test(teste_a);
     cout << "Dependentes:";
     for(auto d : teste_a.get_dependentes()){
-        cout << d.get_id() << endl;
+        cout << d->get_id() << endl;
     }
     print_test(teste_i);
 
