@@ -30,7 +30,12 @@ int main(){
     Idoso teste_i(2, "Arlindo", 50, 500.0);
 
     print_test(teste_c);
+    cout << "Responsavel:" <<  teste_c.get_responsavel() << endl;
     print_test(teste_a);
+    cout << "Dependentes:";
+    for(auto d : teste_a.get_dependentes()){
+        cout << d << endl;
+    }
     print_test(teste_i);
 
     return 0;
