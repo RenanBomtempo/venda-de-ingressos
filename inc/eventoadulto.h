@@ -1,9 +1,12 @@
 #ifndef EVENTO_ADULTO_H
 #define EVENTO_ADULTO_H
 
+#include <evento.h>
+#include <usuario.h>
+
 using namespace std;
 
-class EventoAdulto{
+class EventoAdulto : public Evento{
     private:
         int quota_idoso;
     public:
