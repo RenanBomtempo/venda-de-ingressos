@@ -17,9 +17,9 @@ void Adulto::add_dependente(int d){
 }
 
 void Adulto::remove_dependente(int d){
-    for (it = dependentes.begin(); it != dependentes.end(); ++it){
-        if (it == d){
-            dependentes.erase(it)
+    for (set<int>::iterator it = dependentes.begin(); it != dependentes.end(); ++it){
+        if (*it == d){
+            dependentes.erase(it);
         }
     }
 }
