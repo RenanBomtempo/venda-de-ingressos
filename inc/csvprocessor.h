@@ -2,6 +2,19 @@
 #define CSV_PROCESSOR_H
 
 #include "initialize_classes.h"
+// Usuario
+#include "usuario.h"
+#include "adulto.h"
+#include "crianca.h"
+#include "idoso.h"
+// Evento
+#include "evento.h"
+#include "cinema.h"
+#include "eventoadulto.h"
+#include "show.h"
+#include "boate.h"
+#include "eventoinfantil.h"
+#include "teatrofantoche.h"
 #include <iostream>
 #include <string>
 #include <sstream>

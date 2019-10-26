@@ -58,28 +58,17 @@ string_table CSVtoStringTable (std::string file_name) {
 
 std::vector<Usuario*> LerUsuarios (const string_table table) {
     std::vector<Usuario*> usuarios;
-
+    
     for (string_vector u : table) {
         // Pegar dados do usuario
         std::string nome;
         int id, idade;
         float saldo;
-        std::stringstream ss;
 
-        // ID
-        ss.str(u[ID]);
-        ss >> id;
-
-        // Nome
-        nome = u[NOME];
-
-        // Idade
-        ss.str(u[IDADE]);
-        ss >> idade;
-
-        // Saldo
-        ss.str(u[SALDO]);
-        ss >> saldo; 
+        id    = stoi(u[ID]);
+        nome  = u[NOME];
+        idade = stoi(u[IDADE]);
+        saldo = stof(u[SALDO]); 
         
         // Criar Objetos 
         if (u[CATEG] == "adulto") {
@@ -92,10 +81,9 @@ std::vector<Usuario*> LerUsuarios (const string_table table) {
         }
         else if (u[CATEG] == "criança" || u[CATEG] == "crianca" ) {
             int responsavel;
-            ss.str(u[RESPONSAVEL]);
-            ss >> responsavel;
+            responsavel = stoi(u[RESPONSAVEL]);
 
-            Crianca *c = new Crianca(id, nome, idade, saldo, dynamic_cast<Adulto*>(usuarios[responsavel]));
+            Crianca *c = new Crianca(id, nome, idade, saldo, (Adulto*)(usuarios[responsavel]));
             usuarios.push_back(dynamic_cast<Usuario*>(c));
         }
     }

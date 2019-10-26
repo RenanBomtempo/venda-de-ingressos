@@ -18,7 +18,7 @@ class Adulto : public Usuario {
         Adulto(int i, string n, int idad, float s, int t);
         vector<Crianca*> get_dependentes();
         void add_dependente(Crianca* d);
-        void imprime();
+        void imprime() override;
 };
 
 #endif//ADULTO_H
