@@ -14,7 +14,7 @@ Evento::Evento(int i, string n, Usuario* d, int c, vector<int> ca, vector<int> p
     precos = p;
 }
 
-Evento::add_ingresso(int c, int p){
+void Evento::add_ingresso(int c, int p){
     capacidades.push_back(c);
     precos.push_back(p);
 }
