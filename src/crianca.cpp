@@ -10,3 +10,8 @@ Crianca::Crianca(int i, string n, int idad, float s, Adulto* r) : Usuario(i, n, 
 Adulto* Crianca::get_responsavel(){
     return responsavel;
 }
+
+void Crianca::imprime() : Usuario::imprime(){
+    cout << "Responsavel: " << responsavel->get_nome() << " (" <<
+                               responsavel->get_id() << ")" << endl;
+}
