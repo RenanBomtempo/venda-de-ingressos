@@ -29,3 +29,10 @@ float Usuario::get_saldo(){
 int Usuario::get_tipo(){
     return tipo;
 }
+
+void imprime(){
+    cout << "Id: " << id << endl;
+    cout << "Nome: " << nome << endl;
+    cout << "Idade: " << idade << endl;
+    cout << "Saldo: R$" << saldo << ",00" << endl;
+}

@@ -19,6 +19,7 @@ class Usuario {
         int get_idade();
         float get_saldo();
         int get_tipo();
+        void imprime();
 };
 
 #endif//USUARIO_H
