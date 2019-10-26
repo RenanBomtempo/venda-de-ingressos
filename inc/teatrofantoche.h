@@ -15,6 +15,7 @@ class TeatroFantoche : public EventoInfantil{
         TeatroFantoche(int i, string n, Usuario* d, int c,
                        vector<int> ca, vector<int> p,
                        vector<int> h);
+        void add_horario(int h);
 }
 
 #endif//TEATRO_FANTOCHE_H
