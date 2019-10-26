@@ -1,8 +1,10 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 
+#include "initialize_classes.h"
+#include "usuario.h"
+#include <vector>
 #include <string>
-#include <Usuario>
 
 using namespace std;
 
@@ -20,6 +22,6 @@ class Evento{
                vector<int> ca, vector<int> p);
         void add_ingresso(int c, int p);
 
-}
+};
 
 #endif//EVENTO_H

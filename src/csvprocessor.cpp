@@ -1,11 +1,4 @@
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <fstream>
-#include <vector>
-
-typedef std::vector<std::vector<std::string>> string_table;
-typedef std::vector<std::string>string_vector;
+#include "csvprocessor.h"
 
 string_vector SplitStringWithDelim (const std::string str, const char delim) {
     // Convert string to a stream to allow the use of the getline() function
@@ -61,4 +54,51 @@ string_table CSVtoStringTable (std::string file_name) {
     csv_file.close();
 
     return str_table;
+}
+
+std::vector<Usuario*> LerUsuarios (const string_table table) {
+    std::vector<Usuario*> usuarios;
+
+    for (string_vector u : table) {
+        // Pegar dados do usuario
+        std::string nome;
+        int id, idade;
+        float saldo;
+        std::stringstream ss;
+
+        // ID
+        ss.str(u[ID]);
+        ss >> id;
+
+        // Nome
+        nome = u[NOME];
+
+        // Idade
+        ss.str(u[IDADE]);
+        ss >> idade;
+
+        // Saldo
+        ss.str(u[SALDO]);
+        ss >> saldo; 
+        
+        // Criar Objetos 
+        if (u[CATEG] == "adulto") {
+           Adulto *a = new Adulto(id, nome, idade, saldo);
+           usuarios.push_back(dynamic_cast<Usuario*>(a));
+        }
+        else if (u[CATEG] == "idoso") {
+            Idoso *i = new Idoso(id, nome, idade, saldo);
+            usuarios.push_back(dynamic_cast<Usuario*>(i));
+        }
+        else if (u[CATEG] == "criança" || u[CATEG] == "crianca" ) {
+            int responsavel;
+            ss.str(u[RESPONSAVEL]);
+            ss >> responsavel;
+
+            Crianca *c = new Crianca(id, nome, idade, saldo, dynamic_cast<Adulto*>(usuarios[responsavel]));
+            usuarios.push_back(dynamic_cast<Usuario*>(c));
+        }
+    }
+
+    return usuarios;
 }

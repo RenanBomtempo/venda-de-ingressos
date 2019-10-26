@@ -1,9 +1,11 @@
 #ifndef ADULTO_H
 #define ADULTO_H
 
-#include <usuario.h>
-#include <initialize_classes.h>
+#include "initialize_classes.h"
+#include "usuario.h"
+#include "crianca.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 

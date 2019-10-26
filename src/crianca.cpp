@@ -11,7 +11,7 @@ Adulto* Crianca::get_responsavel(){
     return responsavel;
 }
 
-void Crianca::imprime() : Usuario::imprime(){
+void Crianca::imprime(){ 
     cout << "Responsavel: " << responsavel->get_nome() << " (" <<
                                responsavel->get_id() << ")" << endl;
 }

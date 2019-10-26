@@ -1,8 +1,11 @@
 #ifndef BOATE_H
 #define BOATE_H
 
-#include <eventoadulto.h>
-#include <usuario.h>
+#include "initialize_classes.h"
+#include "eventoadulto.h"
+#include "usuario.h"
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +18,6 @@ class Boate : public EventoAdulto{
         Boate(int i, string n, Usuario* d, int c,
               vector<int> ca, vector<int> p, int q,
               int hi, int hf);
-}
-
+};
 
 #endif//BOATE_H

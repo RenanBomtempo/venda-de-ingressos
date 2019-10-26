@@ -1,4 +1,5 @@
 #include "usuario.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -30,9 +31,9 @@ int Usuario::get_tipo(){
     return tipo;
 }
 
-void imprime(){
+void Usuario::imprime(){
     cout << "Id: " << id << endl;
     cout << "Nome: " << nome << endl;
     cout << "Idade: " << idade << endl;
-    cout << "Saldo: R$" << saldo << ",00" << endl;
+    cout << "Saldo: R$" << setprecision(0) << saldo << ",00" << endl;
 }

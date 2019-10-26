@@ -1,11 +1,16 @@
 #ifndef CSV_PROCESSOR_H
 #define CSV_PROCESSOR_H
 
+#include "initialize_classes.h"
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <fstream>
 #include <vector>
+
+enum campos_usuario {
+    ID, CATEG, NOME, IDADE, SALDO, RESPONSAVEL
+};
 
 typedef std::vector<std::vector<std::string>> string_table;
 typedef std::vector<std::string>string_vector;
@@ -23,5 +28,10 @@ void PrintStringTable (string_table str_tb);
  * Each line of the table corresponds to a line on the file and contains individual strings from that line. 
  */
 string_table CSVtoStringTable (std::string file_name);
+
+/* Instantiate all Usuarios from the table containing the CSV data.
+ * Returns a vector with pointers to all Usuarios.
+ */
+std::vector<Usuario*> LerUsuarios (const string_table table);
 
 #endif//CSV_PROCESSOR_H
