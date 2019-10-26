@@ -2,19 +2,21 @@
 #define ADULTO_H
 
 #include <usuario.h>
-#include <set>
+#include <crianca.h>
+#include <vector>
 
 using namespace std;
 
 class Adulto : public Usuario {
     private:
-        set<int> dependentes;
+        vector<Crianca> dependentes;
     public:
+        Adulto();
         Adulto(int i, string n, int idad, float s);
         Adulto(int i, string n, int idad, float s, int t);
-        set<int> get_dependentes();
-        void add_dependente(int d);
-        void remove_dependente(int d);
+        vector<Crianca> get_dependentes();
+        void add_dependente(Crianca d);
+        void remove_dependente(int id_d);
 };
 
 #endif//ADULTO_H
