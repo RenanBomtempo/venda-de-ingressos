@@ -18,3 +18,10 @@ vector<Crianca*> Adulto::get_dependentes(){
 void Adulto::add_dependente(Crianca* d){
     dependentes.push_back(d);
 }
+
+void Adulto::imprime() : Usuario::imprime(){
+    cout << "Dependentes:" << endl;
+    for(auto d : dependentes){
+        cout << "- " << d->get_nome() << " (" << d->get_id() << ")" << endl;
+    }
+}
