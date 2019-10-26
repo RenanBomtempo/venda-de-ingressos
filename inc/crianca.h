@@ -2,15 +2,16 @@
 #define CRIANCA_H
 
 #include <usuario.h>
+#include <adulto.h>
 
 using namespace std;
 
 class Crianca : public Usuario {
     private:
-        int responsavel;
+        Adulto responsavel;
     public:
-        Crianca(int i, string n, int idad, float s, int r);
-        int get_responsavel();
+        Crianca(int i, string n, int idad, float s, Adulto r);
+        Adulto get_responsavel();
 };
 
 #endif//CRIANCA_H
