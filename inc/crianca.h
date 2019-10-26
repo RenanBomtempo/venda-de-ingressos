@@ -2,7 +2,7 @@
 #define CRIANCA_H
 
 #include <usuario.h>
-#include <initialize_classes.h>
+#include <adulto.h>
 
 using namespace std;
 
