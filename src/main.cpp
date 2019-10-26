@@ -14,7 +14,24 @@
 // Bibliotecas std
 #include <iostream>
 
-int main () {
-    std::cout << "Hello World!\n";
+using namespace std;
+
+void print_test(Usuario a){
+    cout << "Id:" << a.get_id() << endl;
+    cout << "Nome:" << a.get_nome() << endl;
+    cout << "Saldo:" << a.get_saldo() << endl;
+    cout << "Idade:" << a.get_idade() << endl;
+}
+
+int main(){
+    Crianca teste_c(0, "Jorge", 10, 100.0, 1);
+    Adulto teste_a(1, "Ana Maria", 30, 1500.0);
+    teste_a.add_dependente(0);
+    Idoso teste_i(2, "Arlindo", 50, 500.0);
+
+    print_test(teste_c);
+    print_test(teste_a);
+    print_test(teste_i);
+
     return 0;
 }
