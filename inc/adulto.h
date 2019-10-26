@@ -8,6 +8,7 @@ class Adulto : public Usuario {
     private:
         vector<int> dependentes;
     public:
+        Adulto(int i, string n, int idad, float s);
         vector<int> get_dependentes();
         void add_dependente(int d);
         void remove_dependente(int d);

@@ -7,6 +7,7 @@ class Crianca : public Usuario {
     private:
         int responsavel;
     public:
+        Crianca(int i, string n, int idad, float s);
         int get_responsavel();
         void set_responsavel(int r);
 }
