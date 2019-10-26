@@ -7,7 +7,7 @@ using namespace std;
 
 class Idoso : public Adulto {
     public:
-        Idoso(int i, string n, int idad, float s);
+        Idoso(int i, string n, int idad, float s) : Adulto(i, n, idad, s, 2);
 }
 
 #endif//IDOSO_H
