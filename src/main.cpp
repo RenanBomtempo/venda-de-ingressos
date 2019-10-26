@@ -24,17 +24,17 @@ void print_test(Usuario a){
 }
 
 int main(){
-    Crianca teste_c(0, "Jorge", 10, 100.0, 1);
     Adulto teste_a(1, "Ana Maria", 30, 1500.0);
-    teste_a.add_dependente(0);
+    Crianca teste_c(0, "Jorge", 10, 100.0, &teste_a);
+    teste_a.add_dependente(teste_c);
     Idoso teste_i(2, "Arlindo", 50, 500.0);
 
     print_test(teste_c);
-    cout << "Responsavel:" <<  teste_c.get_responsavel() << endl;
+    cout << "Responsavel:" <<  teste_c.get_responsavel()->get_id() << endl;
     print_test(teste_a);
     cout << "Dependentes:";
     for(auto d : teste_a.get_dependentes()){
-        cout << d << endl;
+        cout << d.get_id() << endl;
     }
     print_test(teste_i);
 
