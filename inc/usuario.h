@@ -19,6 +19,6 @@ class Usuario {
         int get_idade();
         float get_saldo();
         int get_tipo();
-}
+};
 
 #endif//USUARIO_H
