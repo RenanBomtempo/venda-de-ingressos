@@ -16,7 +16,8 @@ class Evento{
         vector<int> precos;
     public:
         Evento(int i, string n, Usuario* d, int c);
-        Evento(int i, string n, Usuario* d, int c, vector<int> ca, vector<int> p);
+        Evento(int i, string n, Usuario* d, int c,
+               vector<int> ca, vector<int> p);
         void add_ingresso(int c, int p);
 
 }
