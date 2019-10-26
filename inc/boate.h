@@ -13,7 +13,8 @@ class Boate : public EventoAdulto{
     public:
         Boate(int i, string n, Usuario* d, int c, int q, int hi, int hf);
         Boate(int i, string n, Usuario* d, int c,
-              vector<int> ca, vector<int> p, int q);
+              vector<int> ca, vector<int> p, int q,
+              int hi, int hf);
 }
 
 

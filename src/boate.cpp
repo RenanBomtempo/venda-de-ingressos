@@ -9,7 +9,8 @@ Boate::Boate(int i, string n, Usuario* d, int c, int q, int hi, int hf) :
 }
 
 Boate::Boate(int i, string n, Usuario* d, int c,
-             vector<int> ca, vector<int> p, int q) :
+             vector<int> ca, vector<int> p, int q,
+             int hi, int hf) :
                                             EventoAdulto(i, n, d, c, q, ca, p){
     hora_inicio = hi;
     hora_fim = hf;
