@@ -11,13 +11,13 @@ class Cinema : public Evento{
         vector<int> horarios;
         int duracao;
     public:
-        Cinema(int i, string n, Usuario* d, int c, int d);
-        Cinema(int i, string n, Usuario* d, int c,
-               vector<int> ca, vector<int> p, int d);
-        Cinema(int i, string n, Usuario* d, int c,
-               vector<int> ca, vector<int> p, int d,
+        Cinema(int i, string n, Usuario* d, int du);
+        Cinema(int i, string n, Usuario* d,
+               vector<int> ca, vector<int> p, int du);
+        Cinema(int i, string n, Usuario* d,
+               vector<int> ca, vector<int> p, int du,
                vector<int> h);
         void add_horario(int h);
-}
+};
 
 #endif//CINEMA_H
