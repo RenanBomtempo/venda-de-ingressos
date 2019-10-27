@@ -7,8 +7,8 @@ OUT = -o main.out
 all: main clear
 
 # Compilar arquivo executavel
-main: usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o
-	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o $(OUT) $(CFLAGS)
+main: usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o saida.o
+	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o saida.o $(OUT) $(CFLAGS)
 
 # Compilar arquivos obj
 crianca.o:
@@ -46,6 +46,9 @@ evento.o:
 
 csvprocessor.o:
 	$(OBJ) csvprocessor.cpp $(CFLAGS)
+
+saida.o:
+	$(OBJ) saida.cpp $(CFLAGS)
 
 # Deletar arquivos objeto
 clear:

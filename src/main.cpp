@@ -13,6 +13,7 @@
 #include "teatrofantoche.h"
 // Bibliotecas std
 #include "csvprocessor.h"
+#include "saida.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -49,10 +50,13 @@ int main(){
     // Ler usuarios
     std::vector<Usuario*> vetor_usuarios = LerUsuarios(usuarios_table);
 
+    saidaUsuarios(vetor_usuarios);
+
     // Ler Eventos
     std::vector<Evento*> vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
 
 
+    // Delete all dynamically allocated data
     for (Usuario *u : vetor_usuarios) {
         //u->imprime();
         switch (u->get_tipo()) {

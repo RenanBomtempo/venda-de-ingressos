@@ -63,13 +63,13 @@ std::vector<Usuario*> LerUsuarios (const string_table table) {
         // Dados gerais
         std::string nome = u[uNOME];
         int id = stoi(u[uID]);
-        int idade = stoi(u[uIDADE]);;
+        int idade = stoi(u[uIDADE]);
         float saldo = stof(u[uSALDO]); 
-        
+
         // Dados especificos
         if (u[uCATEG] == "adulto") {
-           Adulto *a = new Adulto(id, nome, idade, saldo);
-           usuarios.push_back(dynamic_cast<Usuario*>(a));
+            Adulto *a = new Adulto(id, nome, idade, saldo);
+            usuarios.push_back(dynamic_cast<Usuario*>(a));
         }
         else if (u[uCATEG] == "idoso") {
             Idoso *i = new Idoso(id, nome, idade, saldo);
