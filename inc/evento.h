@@ -2,7 +2,8 @@
 #define EVENTO_H
 
 #include <string>
-#include <Usuario>
+#include <usuario.h>
+#include <vector>
 
 using namespace std;
 
@@ -19,7 +20,6 @@ class Evento{
         Evento(int i, string n, Usuario* d, int c,
                vector<int> ca, vector<int> p);
         void add_ingresso(int c, int p);
-
-}
+};
 
 #endif//EVENTO_H
