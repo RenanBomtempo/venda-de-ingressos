@@ -16,12 +16,8 @@
 #include "teatrofantoche.h"
 #include <vector>
 
-/* Gera o relatorio de saida dos dados dos Usuarios
+/* Gera o relatorio de saida dos dados armazenados.
  */
-void saidaUsuarios (std::vector<Usuario*> usuarios);
-
-/* Gera o relatorio de saida dos dados dos Eventos
- */
-void saidaEventos (std::vector<Evento*> eventos);
+void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos);
 
 #endif

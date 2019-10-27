@@ -50,11 +50,11 @@ int main(){
     // Ler usuarios
     std::vector<Usuario*> vetor_usuarios = LerUsuarios(usuarios_table);
 
-    saidaUsuarios(vetor_usuarios);
-
     // Ler Eventos
     std::vector<Evento*> vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
 
+    // Gerar saida
+    gerarSaida(vetor_usuarios, vetor_eventos);
 
     // Delete all dynamically allocated data
     for (Usuario *u : vetor_usuarios) {
@@ -79,7 +79,7 @@ int main(){
     }
 
     for (Evento *e : vetor_eventos) {
-        switch (e->getCategoria()) {
+        switch (e->get_categoria()) {
             case SHOW:
                 delete((Show*)e);
                 break;

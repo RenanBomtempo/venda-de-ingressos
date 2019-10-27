@@ -12,3 +12,7 @@ EventoAdulto::EventoAdulto(int i, string n, Usuario* d, int c,
                                                 Evento(i, n, d, c, ca, p){
     quota_idoso = q;
 }
+
+int EventoAdulto::get_quota_idoso() {
+    return quota_idoso;
+}

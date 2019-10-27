@@ -24,7 +24,12 @@ class Evento{
         Evento(int i, string n, Usuario* d, int c);
         Evento(int i, string n, Usuario* d, int c,
                vector<int> ca, vector<int> p);
-        int getCategoria();
+        string get_nome();
+        vector<int> get_capacidades();
+        vector<int> get_precos();
+        Usuario *get_dono();
+        int get_categoria();
+        int get_id();
         void add_ingresso(int c, int p);
 
 };

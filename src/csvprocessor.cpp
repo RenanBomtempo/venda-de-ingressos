@@ -35,7 +35,6 @@ string_table CSVtoStringTable (std::string file_name) {
     }
 
     // 2D vector of strings with all CSV data.
-    // Exemple for getting string:[1][3] -> 4th string of the 1st line.
     string_table str_table;
 
     // Data of a single line broken into tokens (strings)
@@ -102,8 +101,8 @@ std::vector<Evento*> LerEventos (const string_table table, const std::vector<Usu
             std::vector<int> capacidades;
             std::vector<int> precos;
             for (int i = 0; i < num_tipos; i++) {
-                capacidades.push_back(stoi(ev[eCAP1 + (2*i)]));
-                precos.push_back(stoi(ev[ePRE1 + (2*i)]));
+                capacidades.push_back(stoi(ev[eCAP1-1 + (2*i)]));
+                precos.push_back(stoi(ev[ePRE1-1 + (2*i)]));
             }
             
             std::vector<int> horarios;

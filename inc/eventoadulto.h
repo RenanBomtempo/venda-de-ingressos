@@ -16,6 +16,7 @@ class EventoAdulto : public Evento{
         EventoAdulto(int i, string n, Usuario* d, int c, int q);
         EventoAdulto(int i, string n, Usuario* d, int c,
                      vector<int> ca, vector<int> p, int q);
+        int get_quota_idoso();
 };
 
 #endif//EVENTO_ADULTO_H
