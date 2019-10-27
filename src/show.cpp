@@ -2,22 +2,22 @@
 
 using namespace std;
 
-Show::Show(int i, string n, Usuario* d, int c, int q, int ap) :
-                                            EventoAdulto(i, n, d, c, q){
+Show::Show(int i, string n, Usuario* d, int q, int ap) :
+                                            EventoAdulto(i, n, d, c, q, 1){
     abertura_portoes = ap;
 }
 
-Show::Show(int i, string n, Usuario* d, int c,
+Show::Show(int i, string n, Usuario* d,
            vector<int> ca, vector<int> p, int q,
            int ap) :
-                                            EventoAdulto(i, n, d, c, ca, p, q){
+                                            EventoAdulto(i, n, d, c, ca, p, q, 1){
     abertura_portoes = ap;
 }
 
-Show::Show(int i, string n, Usuario* d, int c,
+Show::Show(int i, string n, Usuario* d,
            vector<int> ca, vector<int> p, int q,
            int ap, vector<string> ar) :
-                                            Show(i, n, d, c, ca, p, q, ap){
+                                            Show(i, n, d, c, ca, p, q, ap, 1){
     artistas = ar;
 }
 

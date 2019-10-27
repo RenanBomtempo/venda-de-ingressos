@@ -13,14 +13,14 @@ class Show : public EventoAdulto{
         int abertura_portoes;
         vector<string> artistas;
     public:
-        Show(int i, string n, Usuario* d, int c, int q, int ap);
-        Show(int i, string n, Usuario* d, int c,
+        Show(int i, string n, Usuario* d, int q, int ap);
+        Show(int i, string n, Usuario* d,
              vector<int> ca, vector<int> p, int q,
-             int ap)
-        Show(int i, string n, Usuario* d, int c,
+             int ap);
+        Show(int i, string n, Usuario* d,
              vector<int> ca, vector<int> p, int q,
              int ap, vector<string> ar);
         void add_artista(string ar);
-}
+};
 
 #endif//SHOW_H
