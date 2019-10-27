@@ -104,13 +104,13 @@ std::vector<Evento*> LerEventos (const string_table table, const std::vector<Usu
                 capacidades.push_back(stoi(ev[eCAP1-1 + (2*i)]));
                 precos.push_back(stoi(ev[ePRE1-1 + (2*i)]));
             }
-            
+
             std::vector<int> horarios;
             for (u_int i = 7 + (2*num_tipos); i < ev.size()-1; i++)
                 horarios.push_back(stoi(ev[i]));
 
             // Add to vector of Eventos
-            Cinema *c = new Cinema(id, nome, dono, CINEMA, capacidades, precos, duracao, horarios);
+            Cinema *c = new Cinema(id, nome, dono, capacidades, precos, duracao, horarios);
             eventos.push_back(dynamic_cast<Evento*>(c));
         } else {
             // Dados gerais
@@ -137,28 +137,28 @@ std::vector<Evento*> LerEventos (const string_table table, const std::vector<Usu
                     int fim = stoi(ev[ev.size() - 1]);
 
                     // Add to vector of Eventos
-                    Boate *b = new Boate(id, nome, dono, BOATE, capacidades, precos, quota_idoso, inicio, fim);
+                    Boate *b = new Boate(id, nome, dono, capacidades, precos, quota_idoso, inicio, fim);
                     eventos.push_back(dynamic_cast<Evento*>(b));
-                } 
+                }
                 else if (sub_categoria == "show") {
                     int abertura = stoi(ev[7 + (2*num_tipos)]);
 
                     std::vector<std::string> artistas;
                     for (u_int i = 8 + (2*num_tipos); i < ev.size(); i++)
                         artistas.push_back(ev[i]);
-                    
+
                     // Add to vector of Eventos
-                    Show *s = new Show(id, nome, dono, SHOW, capacidades, precos, quota_idoso, abertura, artistas);
+                    Show *s = new Show(id, nome, dono, capacidades, precos, quota_idoso, abertura, artistas);
                     eventos.push_back(dynamic_cast<Evento*>(s));
                 }
-            } 
+            }
             else if (categoria == "infantil") {
                 std::vector<int> horarios;
                 for (u_int i = 6 + (2*num_tipos); i < ev.size(); i++)
                     horarios.push_back(stoi(ev[i]));
 
                 // Add to vector of Eventos
-                TeatroFantoche *t = new TeatroFantoche(id, nome, dono, FANTOCHE, capacidades, precos, horarios);
+                TeatroFantoche *t = new TeatroFantoche(id, nome, dono, capacidades, precos, horarios);
                 eventos.push_back(dynamic_cast<Evento*>(t));
             }
         }
