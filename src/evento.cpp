@@ -14,6 +14,8 @@ Evento::Evento(int i, string n, Usuario* d, int c, vector<int> ca, vector<int> p
     precos = p;
 }
 
+Evento::~Evento() {}
+
 vector<int> Evento::get_capacidades() {
     return capacidades;
 }

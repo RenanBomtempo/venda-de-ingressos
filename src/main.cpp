@@ -83,11 +83,11 @@ int main(){
             case E_ADULTO:
                 switch (e->get_sub_categoria()) {
                     case SHOW:
-                        delete((Show*)e);
+                        delete(dynamic_cast<Show*>(e));
                         break;
 
                     case BOATE:
-                        delete((Boate*)e);
+                        delete(dynamic_cast<Boate*>(e));
                         break;
 
                     default:
@@ -99,7 +99,7 @@ int main(){
             case E_INFANTIL:
                 switch (e->get_sub_categoria()) {
                     case FANTOCHE:
-                        delete((TeatroFantoche*)e);
+                        delete(dynamic_cast<TeatroFantoche*>(e));
                         break;
 
                     default:
@@ -109,7 +109,7 @@ int main(){
                 break;
 
             case CINEMA:
-                delete((Cinema*)e);
+                delete(dynamic_cast<Cinema*>(e));
                 break;
 
             default:
