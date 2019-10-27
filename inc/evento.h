@@ -9,7 +9,7 @@
 using namespace std;
 
 enum categoria {
-    CINEMA, SHOW, BOATE, FANTOCHE
+    CINEMA, E_INFANTIL, E_ADULTO
 };
 
 class Evento{
@@ -17,7 +17,7 @@ class Evento{
         int id;
         string nome;
         Usuario* dono;
-        int categoria; //cinema=0;show=1;boate=2;fantoche=3
+        int categoria;
         vector<int> capacidades;
         vector<int> precos;
     public:
@@ -31,6 +31,7 @@ class Evento{
         int get_categoria();
         int get_id();
         void add_ingresso(int c, int p);
+        virtual int get_sub_categoria();
 };
 
 #endif//EVENTO_H
