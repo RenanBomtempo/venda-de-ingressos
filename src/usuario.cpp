@@ -30,7 +30,7 @@ int Usuario::get_tipo(){
     return tipo;
 }
 
-void imprime(){
+void Usuario::imprime(){
     cout << "Id: " << id << endl;
     cout << "Nome: " << nome << endl;
     cout << "Idade: " << idade << endl;
