@@ -9,6 +9,10 @@
 
 using namespace std;
 
+enum sub_categoria_adulto {
+    SHOW, BOATE
+};
+
 class EventoAdulto : public Evento{
     private:
         int quota_idoso;
@@ -17,7 +21,7 @@ class EventoAdulto : public Evento{
         EventoAdulto(int i, string n, Usuario* d, int q, int sc);
         EventoAdulto(int i, string n, Usuario* d,
                      vector<int> ca, vector<int> p, int q, int sc);
-        int get_sub_categoria();
+        int get_sub_categoria() override;
         int get_quota_idoso();
 };
 
