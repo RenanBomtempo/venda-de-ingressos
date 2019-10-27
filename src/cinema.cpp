@@ -3,13 +3,13 @@
 using namespace std;
 
 Cinema::Cinema(int i, string n, Usuario* d, int du) :
-                                            Evento(i, n, d, 0){
+                                            Evento(i, n, d, CINEMA){
     duracao = du;
 }
 
 Cinema::Cinema(int i, string n, Usuario* d,
                vector<int> ca, vector<int> p, int du) :
-                                            Evento(i, n, d, 0, ca, p){
+                                            Evento(i, n, d, CINEMA, ca, p){
     duracao = du;
 }
 

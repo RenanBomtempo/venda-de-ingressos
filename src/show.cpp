@@ -3,21 +3,21 @@
 using namespace std;
 
 Show::Show(int i, string n, Usuario* d, int q, int ap) :
-                                            EventoAdulto(i, n, d, c, q, 1){
+                                            EventoAdulto(i, n, d, q, SHOW){
     abertura_portoes = ap;
 }
 
 Show::Show(int i, string n, Usuario* d,
            vector<int> ca, vector<int> p, int q,
            int ap) :
-                                            EventoAdulto(i, n, d, c, ca, p, q, 1){
+                                            EventoAdulto(i, n, d, ca, p, q, SHOW){
     abertura_portoes = ap;
 }
 
 Show::Show(int i, string n, Usuario* d,
            vector<int> ca, vector<int> p, int q,
            int ap, vector<string> ar) :
-                                            Show(i, n, d, c, ca, p, q, ap, 1){
+                                            Show(i, n, d, ca, p, q, ap){
     artistas = ar;
 }
 

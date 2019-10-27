@@ -3,14 +3,14 @@
 using namespace std;
 
 EventoAdulto::EventoAdulto(int i, string n, Usuario* d, int q, int sc) :
-                                                Evento(i, n, d, 2){
+                                                Evento(i, n, d, E_ADULTO){
     quota_idoso = q;
     sub_categoria = sc;
 }
 
 EventoAdulto::EventoAdulto(int i, string n, Usuario* d,
                            vector<int> ca, vector<int> p, int q, int sc) :
-                                                Evento(i, n, d, 2, ca, p){
+                                                Evento(i, n, d, E_ADULTO, ca, p){
     quota_idoso = q;
     sub_categoria = sc;
 
