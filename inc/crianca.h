@@ -12,7 +12,6 @@ class Crianca : public Usuario {
     public:
         Crianca(int i, string n, int idad, float s, Adulto* r);
         Adulto* get_responsavel();
-        void imprime();
 };
 
 #endif//CRIANCA_H
