@@ -43,7 +43,7 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
     for (Usuario* u : usuarios) {
         int idade = u->get_idade();
-        
+
         if (idade_max < idade)
             idade_max = idade;
         if (idade_min > idade)
@@ -54,7 +54,7 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
     idade_med /= (float)usuarios.size();
 
-    std::cout << "Número de usuários:\n";
+    std::cout << "Idade dos usuários:\n";
     std::cout << "Mínima: " << idade_min << "\n";
     std::cout << "Máxima: " << idade_max << "\n";
     std::cout << "Média: " << idade_med << "\n\n";
@@ -93,7 +93,7 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
                 std::cout << u->get_nome() << " (ID: " << u->get_id() << "):";
                 for (Crianca* c : dep)
                     std::cout << " " << c->get_nome() << " (ID: " << c->get_id() << "),";
-            
+
                 std::cout << "\n";
             }
         }
@@ -102,30 +102,42 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
     std::cout << "\n";
 
 // NUMERO DE EVENTOS
-    int num_boate = 0, num_fantoche = 0, num_show = 0, num_cinema = 0; 
+    int num_boate = 0, num_fantoche = 0, num_show = 0, num_cinema = 0;
     for (Evento* e : eventos) {
         switch (e->get_categoria()) {
-            case BOATE:
-                num_boate++;
+            case E_ADULTO:
+                switch (e->get_sub_categoria()) {
+                    case BOATE:
+                        num_boate++;
+                        break;
+                    case SHOW:
+                        num_show++;
+                        break;
+                    default:
+                        break;
+                }
                 break;
 
-            case FANTOCHE:
-                num_fantoche++;
+
+            case E_INFANTIL:
+                switch (e->get_sub_categoria()) {
+                    case FANTOCHE:
+                        num_fantoche++;
+                        break;
+                    default:
+                        break;
+                }
                 break;
 
-            case SHOW:
-                num_show++;
-                break;
-            
             case CINEMA:
                 num_cinema++;
                 break;
 
             default:
                 break;
-        }        
+        }
     }
-    
+
     std::cout << "Número de eventos:\n";
     std::cout << "Adultos:\n";
     std::cout << "    Boate: " << num_boate << "\n";
@@ -150,13 +162,13 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
     }
 
     std::cout << "\n";
-    
+
 
 // EVENTO COM MAIOR COTA PARA IDOSO
     int quota_max = 0;
     Evento* ev;
     for (Evento* e : eventos) {
-        if (e->get_categoria() == SHOW || e->get_categoria() == BOATE) {
+        if (e->get_categoria() == E_ADULTO) {
             int quota = ((EventoAdulto*)e)->get_quota_idoso();
             if (quota > quota_max) {
                 quota_max = quota;
@@ -164,8 +176,8 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
             }
         }
     }
-    
-    std::cout << "Evento com maior cota para:\n";
+
+    std::cout << "Evento com maior cota para idoso:" << std::endl;
     std::cout << ev->get_nome() << "(ID: " << ev->get_id() << "): " << quota_max << "\n\n";
 
 // NUMERO DE INGRESSOS POR PRECO
@@ -179,26 +191,26 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
                 case 50:
                     num_50 += cap[i];
                     break;
-                
+
                 case 100:
                     num_100 += cap[i];
                     break;
 
                 case 150:
                     num_150 += cap[i];
-                    break; 
+                    break;
 
                 case 200:
                     num_200 += cap[i];
-                    break; 
+                    break;
 
                 case 250:
                     num_250 += cap[i];
-                    break; 
+                    break;
 
                 case 300:
                     num_300 += cap[i];
-                    break; 
+                    break;
             }
         }
     }
@@ -216,5 +228,5 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         std::cout << "R$250.00: " << num_250 << "\n";
     if (num_300)
         std::cout << "R$300.00: " << num_300 << "\n";
-    
+
 }

@@ -67,11 +67,11 @@ int main(){
             case ADULTO:
                 delete(dynamic_cast<Adulto*>(u));
                 break;
-            
+
             case IDOSO:
                 delete(dynamic_cast<Idoso*>(u));
                 break;
-        
+
             default:
                 delete(u);
                 break;
@@ -80,22 +80,38 @@ int main(){
 
     for (Evento *e : vetor_eventos) {
         switch (e->get_categoria()) {
-            case SHOW:
-                delete((Show*)e);
+            case E_ADULTO:
+                switch (e->get_sub_categoria()) {
+                    case SHOW:
+                        delete((Show*)e);
+                        break;
+
+                    case BOATE:
+                        delete((Boate*)e);
+                        break;
+
+                    default:
+                        delete(e);
+                        break;
+                }
+                break;
+
+            case E_INFANTIL:
+                switch (e->get_sub_categoria()) {
+                    case FANTOCHE:
+                        delete((TeatroFantoche*)e);
+                        break;
+
+                    default:
+                        delete(e);
+                        break;
+                }
                 break;
 
             case CINEMA:
                 delete((Cinema*)e);
                 break;
-            
-            case FANTOCHE:
-                delete((TeatroFantoche*)e);
-                break;
-            
-            case BOATE:
-                delete((Boate*)e);
-                break;
-        
+
             default:
                 delete(e);
                 break;
