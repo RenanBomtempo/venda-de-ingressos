@@ -48,11 +48,54 @@ int main(){
 
     // Ler usuarios
     std::vector<Usuario*> vetor_usuarios = LerUsuarios(usuarios_table);
-    
-    for (Usuario *u : vetor_usuarios)
-    {
-        u->imprime();
-        free(u);
+
+    // Ler Eventos
+    std::vector<Evento*> vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
+
+
+    for (Usuario *u : vetor_usuarios) {
+        //u->imprime();
+        switch (u->get_tipo()) {
+            case CRIANCA:
+                delete(dynamic_cast<Crianca*>(u));
+                break;
+
+            case ADULTO:
+                delete(dynamic_cast<Adulto*>(u));
+                break;
+            
+            case IDOSO:
+                delete(dynamic_cast<Idoso*>(u));
+                break;
+        
+            default:
+                delete(u);
+                break;
+        };
+    }
+
+    for (Evento *e : vetor_eventos) {
+        switch (e->getCategoria()) {
+            case SHOW:
+                delete((Show*)e);
+                break;
+
+            case CINEMA:
+                delete((Cinema*)e);
+                break;
+            
+            case FANTOCHE:
+                delete((TeatroFantoche*)e);
+                break;
+            
+            case BOATE:
+                delete((Boate*)e);
+                break;
+        
+            default:
+                delete(e);
+                break;
+        };
     }
 
     return 0;

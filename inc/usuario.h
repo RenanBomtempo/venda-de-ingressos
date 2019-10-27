@@ -8,6 +8,10 @@
 
 using namespace std;
 
+enum tipo {
+    CRIANCA, ADULTO, IDOSO
+};
+
 class Usuario {
     private:
         int id;
@@ -17,6 +21,7 @@ class Usuario {
         int tipo;
     public:
         Usuario(int i, string n, int idad, float s, int t);
+        virtual ~Usuario();
         int get_id();
         string get_nome();
         int get_idade();

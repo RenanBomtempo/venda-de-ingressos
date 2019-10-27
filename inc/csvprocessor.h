@@ -22,8 +22,13 @@
 #include <vector>
 
 enum campos_usuario {
-    ID, CATEG, NOME, IDADE, SALDO, RESPONSAVEL
+    uID, uCATEG, uNOME, uIDADE, uSALDO, uRESPONSAVEL
 };
+
+enum campos_evento {
+    eID, eCATEG, eSUBCATEG, eNOME, eDONO, eNUMTIPO, eCAP1, ePRE1
+};
+
 
 typedef std::vector<std::vector<std::string>> string_table;
 typedef std::vector<std::string>string_vector;
@@ -46,5 +51,10 @@ string_table CSVtoStringTable (std::string file_name);
  * Returns a vector with pointers to all Usuarios.
  */
 std::vector<Usuario*> LerUsuarios (const string_table table);
+
+/* Instantiate all Eventos from the table containing the CSV data.
+ * Returns a vector with pointers to all Eventos.
+ */
+std::vector<Evento*> LerEventos (const string_table table, const std::vector<Usuario*> usuarios);
 
 #endif//CSV_PROCESSOR_H

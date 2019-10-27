@@ -10,6 +10,8 @@ Usuario::Usuario(int i, string n, int idad, float s, int t){
     tipo = t;
 }
 
+Usuario::~Usuario () {}
+
 int Usuario::get_id(){
     return id;
 }
