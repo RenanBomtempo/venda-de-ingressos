@@ -1,10 +1,10 @@
 0,infantil,fantoche,Show de Bonecas Voodoo,1,2,50,50,50,100,8,12,20
-1,cinema,Historia do Quadribol,1,2,500,50,400,100,12,14,18,2
+1,cinema,História do Quadribol,1,2,500,50,400,100,12,14,18,2
 2,infantil,fantoche,Hogwarts: Uma Historia,0,1,10,50,10,14
 3,infantil,fantoche,Apresentação de espantalhos falantes,1,1,250,50,16
 4,adulto,boate,Baladinha Mistica,1,2,50,100,200,250,20,23,6
 5,infantil,fantoche,Historia da Magia,0,1,200,50,14,16,18
-6,cinema,Importantes dDescobertas Modernas da Magia,1,2,50,50,13,15,19,21,3
-7,adulto,show,Noite Musical no Tres Vassouras,1,1,550,300,80,17
+6,adulto,show,Noite Musical no Tres Vassouras,1,1,550,300,80,17,Orquestra Musical de Hogwarts,As Esquisitonas
+7,cinema,Importantes Descobertas Modernas da Magia,1,1,50,50,13,15,19,21,3
 8,adulto,boate,Festa no Cabeca de Javali,4,3,30,50,30,100,30,150,20,23,5
 9,infantil,fantoche,Os Contos do Chápeu de Sapo,1,2,350,50,60,100,9,11

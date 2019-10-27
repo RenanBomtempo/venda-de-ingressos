@@ -1,8 +1,10 @@
 #ifndef CINEMA_H
 #define CINEMA_H
 
-#include <evento.h>
-#include <usuario.h>
+#include "initialize_classes.h"
+#include "evento.h"
+#include <string>
+#include <vector>
 
 using namespace std;
 

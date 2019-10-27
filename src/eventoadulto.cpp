@@ -19,3 +19,7 @@ EventoAdulto::EventoAdulto(int i, string n, Usuario* d,
 int EventoAdulto::get_sub_categoria(){
     return sub_categoria;
 }
+
+int EventoAdulto::get_quota_idoso() {
+    return quota_idoso;
+}

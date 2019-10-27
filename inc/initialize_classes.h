@@ -1,6 +1,9 @@
+#ifndef INTIALIZE_CLASSES_H
+#define INTIALIZE_CLASSES_H
+
 class Usuario;
-    class Crianca;
     class Adulto;
+    class Crianca;
         class Idoso;
 
 class Evento;
@@ -10,3 +13,5 @@ class Evento;
     class EventoAdulto;
         class Boate;
         class Show;
+
+#endif

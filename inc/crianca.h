@@ -1,8 +1,10 @@
 #ifndef CRIANCA_H
 #define CRIANCA_H
 
-#include <usuario.h>
-#include <adulto.h>
+#include "initialize_classes.h"
+#include "usuario.h"
+#include "adulto.h"
+#include <string>
 
 using namespace std;
 

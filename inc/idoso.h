@@ -1,7 +1,9 @@
 #ifndef IDOSO_H
 #define IDOSO_H
 
-#include <adulto.h>
+#include "initialize_classes.h"
+#include "adulto.h"
+#include <string>
 
 using namespace std;
 

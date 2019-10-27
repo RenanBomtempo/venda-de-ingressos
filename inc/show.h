@@ -1,8 +1,8 @@
 #ifndef SHOW_H
 #define SHOW_H
 
-#include <eventoadulto.h>
-#include <usuario.h>
+#include "initialize_classes.h"
+#include "eventoadulto.h"
 #include <vector>
 #include <string>
 

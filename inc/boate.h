@@ -1,8 +1,11 @@
 #ifndef BOATE_H
 #define BOATE_H
 
-#include <eventoadulto.h>
-#include <usuario.h>
+#include "initialize_classes.h"
+#include "eventoadulto.h"
+#include "usuario.h"
+#include <string>
+#include <vector>
 
 using namespace std;
 

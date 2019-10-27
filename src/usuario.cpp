@@ -10,6 +10,8 @@ Usuario::Usuario(int i, string n, int idad, float s, int t){
     tipo = t;
 }
 
+Usuario::~Usuario () {}
+
 int Usuario::get_id(){
     return id;
 }
@@ -35,4 +37,5 @@ void Usuario::imprime(){
     cout << "Nome: " << nome << endl;
     cout << "Idade: " << idade << endl;
     cout << "Saldo: R$" << saldo << ",00" << endl;
+    cout << "Tipo: " << tipo << endl << endl;
 }

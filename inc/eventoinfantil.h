@@ -1,7 +1,11 @@
 #ifndef EVENTO_INFANTIL_H
 #define EVENTO_INFANTIL_H
 
-#include <evento.h>
+#include "initialize_classes.h"
+#include "evento.h"
+#include "usuario.h"
+#include <string>
+#include <vector>
 
 using namespace std;
 
