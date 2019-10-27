@@ -146,7 +146,7 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
         if (!num_eventos) continue;
 
-        std::cout << u->get_nome() << "(ID: " << u->get_id() << "): " << num_eventos << "\n";
+        std::cout << u->get_nome() << " (ID: " << u->get_id() << "): " << num_eventos << "\n";
     }
 
     std::cout << "\n";
