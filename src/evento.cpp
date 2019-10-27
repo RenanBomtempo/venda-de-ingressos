@@ -41,3 +41,7 @@ void Evento::add_ingresso(int c, int p){
     capacidades.push_back(c);
     precos.push_back(p);
 }
+
+int Evento::get_sub_categoria(){
+    return -1;
+}
