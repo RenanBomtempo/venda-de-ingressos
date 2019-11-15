@@ -27,6 +27,7 @@ class Evento{
         string get_nome();
         vector<int> get_capacidades();
         vector<int> get_precos();
+        int get_preco_atual();
         Usuario *get_dono();
         int get_categoria();
         int get_id();

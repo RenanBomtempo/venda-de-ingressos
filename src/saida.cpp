@@ -2,12 +2,15 @@
 #include <list>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 
 #define MAX_INT 0x7fffffff
 
 void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
-    std::cout << setprecision(2) << fixed;
+    std::ofstream outfile ("saida.txt");
+
+    outfile << setprecision(2) << fixed;
 
 // NUMERO DE USUARIOS
     int num_cri = 0, num_adu = 0, num_ido = 0;
@@ -32,10 +35,10 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    std::cout << "Número de usuários:\n";
-    std::cout << "Crianças: " << num_cri << "\n";
-    std::cout << "Adultos: " << num_adu << "\n";
-    std::cout << "Idosos: " << num_ido << "\n\n";
+    outfile << "Número de usuários:\n";
+    outfile << "Crianças: " << num_cri << "\n";
+    outfile << "Adultos: " << num_adu << "\n";
+    outfile << "Idosos: " << num_ido << "\n\n";
 
 // IDADE DOS USUARIOS
     int idade_min = MAX_INT, idade_max = 0;
@@ -54,10 +57,10 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
     idade_med /= (float)usuarios.size();
 
-    std::cout << "Idade dos usuários:\n";
-    std::cout << "Mínima: " << idade_min << "\n";
-    std::cout << "Máxima: " << idade_max << "\n";
-    std::cout << "Média: " << idade_med << "\n\n";
+    outfile << "Idade dos usuários:\n";
+    outfile << "Mínima: " << idade_min << "\n";
+    outfile << "Máxima: " << idade_max << "\n";
+    outfile << "Média: " << idade_med << "\n\n";
 
 // NUMERO DE DEPENDENTES
     int num_dep_min = MAX_INT, num_dep_max = 0;
@@ -78,28 +81,28 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
     num_dep_med /= (float)num_adu;
 
-    std::cout << "Número de dependentes:\n";
-    std::cout << "Mínima: " << num_dep_min << "\n";
-    std::cout << "Máxima: " << num_dep_max << "\n";
-    std::cout << "Média: " << num_dep_med << "\n\n";
+    outfile << "Número de dependentes:\n";
+    outfile << "Mínima: " << num_dep_min << "\n";
+    outfile << "Máxima: " << num_dep_max << "\n";
+    outfile << "Média: " << num_dep_med << "\n\n";
 
 // DEPENDENTES
-    std::cout << "Dependentes:\n";
+    outfile << "Dependentes:\n";
     for (Usuario* u : usuarios) {
         if (u->get_tipo() >= ADULTO) {
             std::vector<Crianca*> dep = (dynamic_cast<Adulto*>(u))->get_dependentes();
 
             if (!dep.empty()) {
-                std::cout << u->get_nome() << " (ID: " << u->get_id() << "):";
+                outfile << u->get_nome() << " (ID: " << u->get_id() << "):";
                 for (Crianca* c : dep)
-                    std::cout << " " << c->get_nome() << " (ID: " << c->get_id() << "),";
+                    outfile << " " << c->get_nome() << " (ID: " << c->get_id() << "),";
 
-                std::cout << "\n";
+                outfile << "\n";
             }
         }
     }
 
-    std::cout << "\n";
+    outfile << "\n";
 
 // NUMERO DE EVENTOS
     int num_boate = 0, num_fantoche = 0, num_show = 0, num_cinema = 0;
@@ -138,17 +141,17 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    std::cout << "Número de eventos:\n";
-    std::cout << "Adultos:\n";
-    std::cout << "    Boate: " << num_boate << "\n";
-    std::cout << "    Show: " << num_show << "\n";
-    std::cout << "Livres:\n";
-    std::cout << "    Cinema: " << num_cinema << "\n";
-    std::cout << "Infantis:\n";
-    std::cout << "    Teatro de fantoches: " << num_fantoche << "\n\n";
+    outfile << "Número de eventos:\n";
+    outfile << "Adultos:\n";
+    outfile << "    Boate: " << num_boate << "\n";
+    outfile << "    Show: " << num_show << "\n";
+    outfile << "Livres:\n";
+    outfile << "    Cinema: " << num_cinema << "\n";
+    outfile << "Infantis:\n";
+    outfile << "    Teatro de fantoches: " << num_fantoche << "\n\n";
 
 // NUMERO DE EVENTOS QUE O USUARIO POSSUI
-    std::cout << "Número de eventos que o usuário possui:\n";
+    outfile << "Número de eventos que o usuário possui:\n";
     for (Usuario* u : usuarios) {
         int num_eventos = 0;
         for (Evento* e : eventos) {
@@ -158,10 +161,10 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
         if (!num_eventos) continue;
 
-        std::cout << u->get_nome() << " (ID: " << u->get_id() << "): " << num_eventos << "\n";
+        outfile << u->get_nome() << " (ID: " << u->get_id() << "): " << num_eventos << "\n";
     }
 
-    std::cout << "\n";
+    outfile << "\n";
 
 
 // EVENTO COM MAIOR COTA PARA IDOSO
@@ -177,8 +180,8 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    std::cout << "Evento com maior cota para idoso:" << std::endl;
-    std::cout << ev->get_nome() << "(ID: " << ev->get_id() << "): " << quota_max << "\n\n";
+    outfile << "Evento com maior cota para idoso:" << std::endl;
+    outfile << ev->get_nome() << "(ID: " << ev->get_id() << "): " << quota_max << "\n\n";
 
 // NUMERO DE INGRESSOS POR PRECO
     int num_50 = 0, num_100 = 0, num_150 = 0, num_200 = 0, num_250 = 0, num_300 = 0;
@@ -215,18 +218,18 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    std::cout << "Número de ingreços por preço:\n";
+    outfile << "Número de ingressos por preço:\n";
     if (num_50)
-        std::cout << "R$50.00: " << num_50 << "\n";
+        outfile << "R$50.00: " << num_50 << "\n";
     if (num_100)
-        std::cout << "R$100.00: " << num_100 << "\n";
+        outfile << "R$100.00: " << num_100 << "\n";
     if (num_150)
-        std::cout << "R$150.00: " << num_150 << "\n";
+        outfile << "R$150.00: " << num_150 << "\n";
     if (num_200)
-        std::cout << "R$200.00: " << num_200 << "\n";
+        outfile << "R$200.00: " << num_200 << "\n";
     if (num_250)
-        std::cout << "R$250.00: " << num_250 << "\n";
+        outfile << "R$250.00: " << num_250 << "\n";
     if (num_300)
-        std::cout << "R$300.00: " << num_300 << "\n";
+        outfile << "R$300.00: " << num_300 << "\n";
 
 }
