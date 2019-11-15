@@ -2,18 +2,14 @@
 #include <list>
 #include <string>
 #include <iostream>
-#include <fstream>
 #include <iomanip>
 
 #define MAX_INT 0x7fffffff
 
-void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
-    std::ofstream outfile ("saida.txt");
-
-    outfile << setprecision(2) << fixed;
-
-// NUMERO DE USUARIOS
-    int num_cri = 0, num_adu = 0, num_ido = 0;
+void numeroDeUsuarios (std::vector<Usuario*> usuarios) {
+    int num_cri = 0;
+    int num_adu = 0;
+    int num_ido = 0;
 
     for (Usuario* u : usuarios) {
         switch (u->get_tipo()) {
@@ -35,12 +31,13 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    outfile << "Número de usuários:\n";
-    outfile << "Crianças: " << num_cri << "\n";
-    outfile << "Adultos: " << num_adu << "\n";
-    outfile << "Idosos: " << num_ido << "\n\n";
+    std::cout << "Número de usuários:\n";
+    std::cout << "Crianças: " << num_cri << "\n";
+    std::cout << "Adultos: "  << num_adu << "\n";
+    std::cout << "Idosos: "   << num_ido << "\n\n";
+}
 
-// IDADE DOS USUARIOS
+void idadeDosUsuarios (std::vector<Usuario*> usuarios) {
     int idade_min = MAX_INT, idade_max = 0;
     float idade_med = 0;
 
@@ -57,17 +54,20 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
     idade_med /= (float)usuarios.size();
 
-    outfile << "Idade dos usuários:\n";
-    outfile << "Mínima: " << idade_min << "\n";
-    outfile << "Máxima: " << idade_max << "\n";
-    outfile << "Média: " << idade_med << "\n\n";
+    std::cout << setprecision(2) << fixed;
+    std::cout << "Idade dos usuários:\n";
+    std::cout << "Mínima: " << idade_min << "\n";
+    std::cout << "Máxima: " << idade_max << "\n";
+    std::cout << "Média: "  << idade_med << "\n\n";
+}
 
-// NUMERO DE DEPENDENTES
-    int num_dep_min = MAX_INT, num_dep_max = 0;
+void numeroDeDependentes (std::vector<Usuario*> usuarios) {
+    int num_dep_min = MAX_INT, num_dep_max = 0, num_adu = 0;
     float num_dep_med = 0;
 
     for (Usuario* u : usuarios) {
         if (u->get_tipo() >= ADULTO) {
+            num_adu++;
             int num_dep = dynamic_cast<Adulto*>(u)->get_dependentes().size();
 
             if (num_dep_max < num_dep)
@@ -81,30 +81,33 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
     num_dep_med /= (float)num_adu;
 
-    outfile << "Número de dependentes:\n";
-    outfile << "Mínima: " << num_dep_min << "\n";
-    outfile << "Máxima: " << num_dep_max << "\n";
-    outfile << "Média: " << num_dep_med << "\n\n";
+    std::cout << setprecision(2) << fixed;
+    std::cout << "Número de dependentes:\n";
+    std::cout << "Mínima: " << num_dep_min << "\n";
+    std::cout << "Máxima: " << num_dep_max << "\n";
+    std::cout << "Média: "  << num_dep_med << "\n\n";
+}
 
-// DEPENDENTES
-    outfile << "Dependentes:\n";
+void dependentesPorAdulto (std::vector<Usuario*> usuarios) {
+    std::cout << "Dependentes:\n";
     for (Usuario* u : usuarios) {
         if (u->get_tipo() >= ADULTO) {
             std::vector<Crianca*> dep = (dynamic_cast<Adulto*>(u))->get_dependentes();
 
             if (!dep.empty()) {
-                outfile << u->get_nome() << " (ID: " << u->get_id() << "):";
+                std::cout << u->get_nome() << " (ID: " << u->get_id() << "):";
                 for (Crianca* c : dep)
-                    outfile << " " << c->get_nome() << " (ID: " << c->get_id() << "),";
+                    std::cout << " " << c->get_nome() << " (ID: " << c->get_id() << "),";
 
-                outfile << "\n";
+                std::cout << "\n";
             }
         }
     }
 
-    outfile << "\n";
+    std::cout << "\n";
+}
 
-// NUMERO DE EVENTOS
+void numeroDeEventos (std::vector<Evento*> eventos) {
     int num_boate = 0, num_fantoche = 0, num_show = 0, num_cinema = 0;
     for (Evento* e : eventos) {
         switch (e->get_categoria()) {
@@ -120,7 +123,6 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
                         break;
                 }
                 break;
-
 
             case E_INFANTIL:
                 switch (e->get_sub_categoria()) {
@@ -141,17 +143,18 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    outfile << "Número de eventos:\n";
-    outfile << "Adultos:\n";
-    outfile << "    Boate: " << num_boate << "\n";
-    outfile << "    Show: " << num_show << "\n";
-    outfile << "Livres:\n";
-    outfile << "    Cinema: " << num_cinema << "\n";
-    outfile << "Infantis:\n";
-    outfile << "    Teatro de fantoches: " << num_fantoche << "\n\n";
+    std::cout << "Número de eventos:\n";
+    std::cout << "Adultos:\n";
+    std::cout << "    Boate: " << num_boate << "\n";
+    std::cout << "    Show: " << num_show << "\n";
+    std::cout << "Livres:\n";
+    std::cout << "    Cinema: " << num_cinema << "\n";
+    std::cout << "Infantis:\n";
+    std::cout << "    Teatro de fantoches: " << num_fantoche << "\n\n";
+}
 
-// NUMERO DE EVENTOS QUE O USUARIO POSSUI
-    outfile << "Número de eventos que o usuário possui:\n";
+void numeroDeEventosPorUsuario (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
+    std::cout << "Número de eventos que o usuário possui:\n";
     for (Usuario* u : usuarios) {
         int num_eventos = 0;
         for (Evento* e : eventos) {
@@ -161,13 +164,13 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
 
         if (!num_eventos) continue;
 
-        outfile << u->get_nome() << " (ID: " << u->get_id() << "): " << num_eventos << "\n";
+        std::cout << u->get_nome() << " (ID: " << u->get_id() << "): " << num_eventos << "\n";
     }
 
-    outfile << "\n";
+    std::cout << "\n";
+}
 
-
-// EVENTO COM MAIOR COTA PARA IDOSO
+void eventoComMaiorQuotaDeIdoso (std::vector<Evento*> eventos) {
     int quota_max = 0;
     Evento* ev;
     for (Evento* e : eventos) {
@@ -180,10 +183,11 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    outfile << "Evento com maior cota para idoso:" << std::endl;
-    outfile << ev->get_nome() << "(ID: " << ev->get_id() << "): " << quota_max << "\n\n";
+    std::cout << "Evento com maior cota para idoso:" << std::endl;
+    std::cout << ev->get_nome() << "(ID: " << ev->get_id() << "): " << quota_max << "\n\n";
+}
 
-// NUMERO DE INGRESSOS POR PRECO
+void numeroDeIngrecosPorPreco (std::vector<Evento*> eventos) {
     int num_50 = 0, num_100 = 0, num_150 = 0, num_200 = 0, num_250 = 0, num_300 = 0;
     for (Evento* e : eventos) {
         std::vector<int> cap = e->get_capacidades();
@@ -218,18 +222,35 @@ void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
         }
     }
 
-    outfile << "Número de ingressos por preço:\n";
+    std::cout << "Número de ingreços por preço:\n";
     if (num_50)
-        outfile << "R$50.00: " << num_50 << "\n";
+        std::cout << "R$50.00: " << num_50 << "\n";
     if (num_100)
-        outfile << "R$100.00: " << num_100 << "\n";
+        std::cout << "R$100.00: " << num_100 << "\n";
     if (num_150)
-        outfile << "R$150.00: " << num_150 << "\n";
+        std::cout << "R$150.00: " << num_150 << "\n";
     if (num_200)
-        outfile << "R$200.00: " << num_200 << "\n";
+        std::cout << "R$200.00: " << num_200 << "\n";
     if (num_250)
-        outfile << "R$250.00: " << num_250 << "\n";
+        std::cout << "R$250.00: " << num_250 << "\n";
     if (num_300)
-        outfile << "R$300.00: " << num_300 << "\n";
+        std::cout << "R$300.00: " << num_300 << "\n";
+}
 
+void gerarSaida (std::vector<Usuario*> usuarios, std::vector<Evento*> eventos) {
+    numeroDeUsuarios(usuarios);
+
+    idadeDosUsuarios(usuarios);
+
+    numeroDeDependentes(usuarios);
+
+    dependentesPorAdulto(usuarios);
+
+    numeroDeEventos(eventos);
+
+    numeroDeEventosPorUsuario(usuarios, eventos);
+
+    eventoComMaiorQuotaDeIdoso(eventos);
+
+    numeroDeIngrecosPorPreco(eventos);
 }

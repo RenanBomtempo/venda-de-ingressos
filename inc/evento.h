@@ -12,7 +12,7 @@ enum categoria {
     CINEMA, E_INFANTIL, E_ADULTO
 };
 
-class Evento{
+class Evento {
     private:
         int id;
         string nome;
@@ -24,6 +24,7 @@ class Evento{
         Evento(int i, string n, Usuario* d, int c);
         Evento(int i, string n, Usuario* d, int c,
                vector<int> ca, vector<int> p);
+        virtual ~Evento();
         string get_nome();
         vector<int> get_capacidades();
         vector<int> get_precos();
