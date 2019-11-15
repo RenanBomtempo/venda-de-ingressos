@@ -28,6 +28,16 @@ float Usuario::get_saldo(){
     return saldo;
 }
 
+int gasta_saldo(int gasto){
+    if(saldo >= gasto){
+        saldo -= gasto;
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
+
 int Usuario::get_tipo(){
     return tipo;
 }

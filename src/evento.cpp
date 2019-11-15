@@ -1,4 +1,5 @@
 #include "evento.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -23,18 +24,6 @@ vector<int> Evento::get_precos() {
     return precos;
 }
 
-int Evento::get_preco_atual() {
-    while(precos.size() > 0){
-        int min_index = std::min_element(precos.begin(),precos.end()) - precos.begin();
-        if capacidades[min_index] > 0{
-            return precos[min_index];
-        }else{
-            precos.erase(min_index);
-            capacidades.erase(min_index);
-        }
-    }
-    return -1;
-}
 
 Usuario *Evento::get_dono() {
     return dono;
