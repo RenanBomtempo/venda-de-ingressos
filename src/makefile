@@ -1,14 +1,14 @@
 # Flags de compilação
-CPP = g++ 
-OBJ = g++ -c 
-CFLAGS = -g -Wall -I../inc/ 
+CPP = g++
+OBJ = g++ -c
+CFLAGS = -g -Wall -I../inc/
 OUT = -o main.out
 
 all: main clear
 
 # Compilar arquivo executavel
-main: usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o saida.o
-	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o saida.o $(OUT) $(CFLAGS)
+main: usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o
+	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o$(OUT) $(CFLAGS)
 
 # Compilar arquivos obj
 crianca.o:
@@ -32,6 +32,9 @@ eventoadulto.o:
 show.o:
 	$(OBJ) show.cpp $(CFLAGS)
 
+maquina_boate.o:
+	$(OBJ) maquina_boate.cpp $(CFLAGS)
+
 boate.o:
 	$(OBJ) boate.cpp $(CFLAGS)
 
@@ -43,6 +46,9 @@ usuario.o:
 
 evento.o:
 	$(OBJ) evento.cpp $(CFLAGS)
+
+maquina.o:
+	$(OBJ) maquina.cpp $(CFLAGS)
 
 csvprocessor.o:
 	$(OBJ) csvprocessor.cpp $(CFLAGS)

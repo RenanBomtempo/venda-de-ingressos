@@ -11,6 +11,10 @@
 #include "boate.h"
 #include "eventoinfantil.h"
 #include "teatrofantoche.h"
+// Maquinas de eventos
+#include "maquina.h"
+#include "maquina_boate.h"
+
 // Bibliotecas std
 #include "csvprocessor.h"
 #include "saida.h"
@@ -55,6 +59,22 @@ int main(){
 
     // Gerar saida
     gerarSaida(vetor_usuarios, vetor_eventos);
+
+    std::vector<Boate*> vetor_boates;
+
+    for(Evento* evento : vetor_eventos) {
+        switch (evento->get_tipo()) {
+            case BOATE:
+                vetor_boates.push_back(evento);
+                break;
+            default:
+                break;
+        }
+    }
+
+    MaquinaBoate maq_boate(vetor_boates);
+
+    maq_boate.mostra_maquina();
 
     // Delete all dynamically allocated data
     for (Usuario *u : vetor_usuarios) {

@@ -28,7 +28,7 @@ float Usuario::get_saldo(){
     return saldo;
 }
 
-int gasta_saldo(int gasto){
+int Usuario::gasta_saldo(int gasto){
     if(saldo >= gasto){
         saldo -= gasto;
         return 0;
