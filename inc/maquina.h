@@ -2,15 +2,16 @@
 #define MAQUINA_H
 
 #include "evento.h"
+#include <vector>
 
 class Maquina{
     private:
-        Evento* evento;
+        Usuario* usuario;
     public:
-        Maquina(Evento* ev);
-        virtual void mostra_maquina();
-        virtual vector<int> calcula_precos();
-        virtual int verifica_disponibilidade();
-}
+        Maquina(Usuario* us);
+        virtual void mostra_maquina(){};
+        virtual int calcula_preco_total(){};
+        virtual int total_de_ingressos(){};
+};
 
 #endif

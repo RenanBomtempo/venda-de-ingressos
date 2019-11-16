@@ -8,7 +8,7 @@ all: main clear
 
 # Compilar arquivo executavel
 main: usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o
-	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o$(OUT) $(CFLAGS)
+	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o $(OUT) $(CFLAGS)
 
 # Compilar arquivos obj
 crianca.o:
@@ -32,7 +32,7 @@ eventoadulto.o:
 show.o:
 	$(OBJ) show.cpp $(CFLAGS)
 
-maquina_boate.o:
+maquina_boate.o: boate.o
 	$(OBJ) maquina_boate.cpp $(CFLAGS)
 
 boate.o:
@@ -47,7 +47,7 @@ usuario.o:
 evento.o:
 	$(OBJ) evento.cpp $(CFLAGS)
 
-maquina.o:
+maquina.o: evento.o usuario.o
 	$(OBJ) maquina.cpp $(CFLAGS)
 
 csvprocessor.o:

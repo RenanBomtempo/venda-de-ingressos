@@ -63,16 +63,19 @@ int main(){
     std::vector<Boate*> vetor_boates;
 
     for(Evento* evento : vetor_eventos) {
-        switch (evento->get_tipo()) {
-            case BOATE:
-                vetor_boates.push_back(evento);
-                break;
+        switch (evento->get_categoria()) {
+            case E_ADULTO:
+                switch (evento->get_sub_categoria()) {
+                    case BOATE:
+                        vetor_boates.push_back(dynamic_cast<Boate*>(evento));
+                        break;
+                }
             default:
                 break;
         }
     }
 
-    MaquinaBoate maq_boate(vetor_boates);
+    MaquinaBoate maq_boate(vetor_boates, vetor_usuarios[0]);
 
     maq_boate.mostra_maquina();
 
