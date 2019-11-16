@@ -3,12 +3,13 @@ CPP = g++
 OBJ = g++ -c
 CFLAGS = -g -Wall -I../inc/
 OUT = -o main.out
+OBJETOS = usuario.o menu.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o
 
 all: main clear
 
 # Compilar arquivo executavel
-main: usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o
-	$(CPP) main.cpp usuario.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o $(OUT) $(CFLAGS)
+main: $(OBJETOS)
+	$(CPP) main.cpp $(OBJETOS) $(OUT) $(CFLAGS)
 
 # Compilar arquivos obj
 crianca.o:
@@ -56,6 +57,8 @@ csvprocessor.o:
 saida.o:
 	$(OBJ) saida.cpp $(CFLAGS)
 
+menu.o:
+	$(OBJ) menu.cpp $(CFLAGS)
 # Deletar arquivos objeto
 clear:
 	rm *.o

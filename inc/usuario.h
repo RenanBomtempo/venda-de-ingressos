@@ -5,6 +5,7 @@
 #include "usuario.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -30,5 +31,6 @@ class Usuario {
         int gasta_saldo(int gasto);
         virtual void imprime();
 };
+
 
 #endif//USUARIO_H

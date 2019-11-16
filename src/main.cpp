@@ -1,3 +1,4 @@
+#include "menu.h"
 // Usuario
 #include "usuario.h"
 #include "adulto.h"
@@ -24,62 +25,7 @@
 
 using namespace std;
 
-void print_test(Usuario a){
-    cout << "Id:" << a.get_id() << endl;
-    cout << "Nome:" << a.get_nome() << endl;
-    cout << "Saldo:" << a.get_saldo() << endl;
-    cout << "Idade:" << a.get_idade() << endl;
-}
-
-int main(){
-    /*Adulto teste_a(1, "Ana Maria", 30, 1500.0);
-    Crianca teste_c1(0, "Jorge", 10, 100.0, &teste_a);
-    Crianca teste_c2(3, "Joana", 10, 200.0, &teste_a);
-    Idoso teste_i(2, "Arlindo", 50, 500.0);
-
-    print_test(teste_c1);
-    cout << "Responsavel:" <<  teste_c1.get_responsavel()->get_id() << endl;
-    print_test(teste_c2);
-    cout << "Responsavel:" <<  teste_c2.get_responsavel()->get_id() << endl;
-    print_test(teste_a);
-    cout << "Dependentes:";
-    for(auto d : teste_a.get_dependentes()){
-        cout << d->get_id() << endl;
-    }
-    print_test(teste_i);*/
-
-    string_table usuarios_table = CSVtoStringTable("../data/usuarios.csv");
-    string_table eventos_table  = CSVtoStringTable("../data/eventos.csv");
-
-    // Ler usuarios
-    std::vector<Usuario*> vetor_usuarios = LerUsuarios(usuarios_table);
-
-    // Ler Eventos
-    std::vector<Evento*> vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
-
-    // Gerar saida
-    gerarSaida(vetor_usuarios, vetor_eventos);
-
-    std::vector<Boate*> vetor_boates;
-
-    for(Evento* evento : vetor_eventos) {
-        switch (evento->get_categoria()) {
-            case E_ADULTO:
-                switch (evento->get_sub_categoria()) {
-                    case BOATE:
-                        vetor_boates.push_back(dynamic_cast<Boate*>(evento));
-                        break;
-                }
-            default:
-                break;
-        }
-    }
-
-    MaquinaBoate maq_boate(vetor_boates, vetor_usuarios[0]);
-
-    maq_boate.mostra_maquina();
-
-    // Delete all dynamically allocated data
+void limparDadosCarregados( vector<Usuario*> vetor_usuarios, vector<Evento*> vetor_eventos){
     for (Usuario *u : vetor_usuarios) {
         //u->imprime();
         switch (u->get_tipo()) {
@@ -140,6 +86,114 @@ int main(){
                 break;
         };
     }
+}
+
+int main(){
+    vector<Usuario*> vetor_usuarios;
+    vector<Evento*> vetor_eventos;
+    string_table usuarios_table = CSVtoStringTable("../data/usuarios.csv");
+    string_table eventos_table  = CSVtoStringTable("../data/eventos.csv");
+    bool is_dados_carregados = false;
+
+    exibirMenu();
+
+    while (1) {
+        switch (getInput()) {
+        case 1:
+            if (!is_dados_carregados) {
+                vetor_usuarios = LerUsuarios(usuarios_table);
+                vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
+                cout << "----------------------------\n";
+                gerarSaida(vetor_usuarios, vetor_eventos);
+                cout << "----------------------------\n";
+                is_dados_carregados = true;
+            } else {
+                cout << "Os dados de usuarios e eventos ja estao carregados.\n";
+                cout << "----------------------------\n";
+            }
+            break;
+        
+        case 2:
+            if (is_dados_carregados){
+                cout << "\nUSUARIOS CADASTRADOS:\n";
+                for (Usuario* u : vetor_usuarios){
+                    cout << "----------------------------\n";
+                    u->imprime();
+                }
+                
+            }
+            else {
+                cout << "Os dados de usuarios e eventos nao foram carregados.\n";
+                cout << "----------------------------\n";
+                break;
+            }
+            break;
+            
+        case 3:
+            if (is_dados_carregados){
+                int id;
+                Usuario* comprador = nullptr;
+
+                cout << "Insira o ID do comprador: ";
+                cin >> id;
+
+                for(Usuario* u : vetor_usuarios) {
+                    if (u->get_id() == id) {
+                        comprador = u;
+                        if (u->get_tipo() == CRIANCA) {
+                            cout << "Apenas ADULTOS e IDOSOS podem comprar ingressos.\n";
+                            break;
+                        }
+                        // INICIAR PROCESSO DE COMPRA
+                        //
+                        //
+                        //
+                        //
+                    }
+                }
+
+                if (comprador == nullptr)
+                    cout << "O ID inserido nao esta cadastrado no sistema.\n";
+
+                break;
+            }
+            else {
+                cout << "Os dados de usuarios e eventos nao foram carregados.\n";
+                cout << "----------------------------\n";
+                break;
+            }
+            break;
+
+        case 4:
+            limparDadosCarregados(vetor_usuarios, vetor_eventos);
+            return 0;
+        default:
+            break;
+        }
+    }
+/*
+    std::vector<Boate*> vetor_boates;
+
+    for(Evento* evento : vetor_eventos) {
+        switch (evento->get_categoria()) {
+            case E_ADULTO:
+                switch (evento->get_sub_categoria()) {
+                    case BOATE:
+                        vetor_boates.push_back(dynamic_cast<Boate*>(evento));
+                        break;
+                }
+            default:
+                break;
+        }
+    }
+
+    MaquinaBoate maq_boate(vetor_boates, vetor_usuarios[0]);
+
+    maq_boate.mostra_maquina();
+*/
+
+// Delete all dynamically allocated data
+    limparDadosCarregados(vetor_usuarios, vetor_eventos);
 
     return 0;
 }

@@ -4,7 +4,7 @@
 #include "evento.h"
 #include <vector>
 
-class Maquina{
+class Maquina {
     private:
         Usuario* usuario;
     public:

@@ -46,6 +46,16 @@ void Usuario::imprime(){
     cout << "Id: " << id << endl;
     cout << "Nome: " << nome << endl;
     cout << "Idade: " << idade << endl;
-    cout << "Saldo: R$" << saldo << ",00" << endl;
-    cout << "Tipo: " << tipo << endl << endl;
+    cout << "Saldo: R$" << saldo << endl;
+    cout << "Categoria: ";
+    switch (tipo) {
+    case ADULTO:
+        cout << "Adulto\n";
+        break;
+    case IDOSO:
+        cout << "Idoso\n";
+        break;
+    default:
+        break;
+    }
 }
