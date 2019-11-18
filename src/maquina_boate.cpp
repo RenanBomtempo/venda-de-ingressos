@@ -1,5 +1,6 @@
 #include "maquina_boate.h"
 #include "boate.h"
+#include "adulto.h"
 #include <algorithm>
 #include <vector>
 #include <sstream>
@@ -56,17 +57,29 @@ void MaquinaBoate::mostra_maquina(){
         return;
     }
     std::string confirma;
-
-    cout << "O custo total e: " << calcula_preco_total() << endl;
+    int preco_total = calcula_preco_total();
+    cout << "O custo total e: " << preco_total << endl;
     cout << "Confirmar compra? (S ou N)" << endl;
     cin >> confirma;
     if (confirma == "S" || confirma == "s"){
-
+        cout << get_usuario()->get_saldo() << endl;
+        cout << realiza_compra(preco_total);
+        cout << get_usuario()->get_saldo() << endl;
     }else{
         mostra_maquina();
         return;
     }
 }
+
+string MaquinaBoate::realiza_compra(int preco_total){
+    string result = get_usuario()->gasta_saldo(preco_total);
+    if(result == "Pagamento efetuado com sucesso.\n"){
+        ev_escolha->gasta_ingressos(get_usuario(), qtd_ingressos);
+    }
+    qtd_ingressos = 0;
+    return result;
+}
+
 
 string MaquinaBoate::mostra_ingressos_disponiveis(Boate* evento){
     vector<int> cap = evento->get_capacidades();
@@ -90,6 +103,7 @@ int MaquinaBoate::calcula_preco_total(){
     std::vector<int>::iterator it;
     int total = 0;
     int i = 0;
+    int aux_qtd = qtd_ingressos;
     while(qtd_ingressos > 0){
         if(cap[i] > 0){
             if(qtd_ingressos >= cap[i]){
@@ -103,6 +117,7 @@ int MaquinaBoate::calcula_preco_total(){
         }
         i++;
     }
+    qtd_ingressos = aux_qtd;
     return total;
 }
 

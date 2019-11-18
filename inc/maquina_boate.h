@@ -17,6 +17,7 @@ class MaquinaBoate : Maquina{
         string mostra_ingressos_disponiveis(Boate* evento);
         Boate* acha_evento_por_id(int id);
         int total_de_ingressos();
+        string realiza_compra(int preco_total);
 };
 
 #endif
