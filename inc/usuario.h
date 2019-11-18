@@ -1,8 +1,6 @@
 #ifndef USUARIO_H
 #define USUARIO_H
 
-#include "initialize_classes.h"
-#include "usuario.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -33,5 +31,8 @@ class Usuario {
         virtual void imprime();
 };
 
+class Crianca;
+class Adulto;
+class Idoso;
 
 #endif//USUARIO_H

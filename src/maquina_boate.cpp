@@ -80,7 +80,6 @@ string MaquinaBoate::realiza_compra(int preco_total){
     return result;
 }
 
-
 string MaquinaBoate::mostra_ingressos_disponiveis(Boate* evento){
     vector<int> cap = evento->get_capacidades();
     vector<int> prec = evento->get_precos();

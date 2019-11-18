@@ -1,16 +1,13 @@
 #ifndef TEATRO_FANTOCHE_H
 #define TEATRO_FANTOCHE_H
 
-#include "initialize_classes.h"
 #include "eventoinfantil.h"
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class TeatroFantoche : public EventoInfantil{
     private:
-        vector<int> horarios;
+        std::vector<int> horarios;
     public:
         TeatroFantoche(int i, string n, Usuario* d);
         TeatroFantoche(int i, string n, Usuario* d,

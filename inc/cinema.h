@@ -1,7 +1,7 @@
 #ifndef CINEMA_H
 #define CINEMA_H
 
-#include "initialize_classes.h"
+
 #include "evento.h"
 #include <string>
 #include <vector>

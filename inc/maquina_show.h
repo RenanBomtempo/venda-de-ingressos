@@ -2,8 +2,8 @@
 #define MAQUINA_SHOW_H
 
 #include "maquina.h"
+#include "show.h"
 #include <vector>
-#include "boate.h"
 
 class MaquinaShow : Maquina{
     private:

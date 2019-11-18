@@ -1,7 +1,7 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 
-#include "initialize_classes.h"
+
 #include "usuario.h"
 #include <vector>
 #include <string>

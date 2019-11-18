@@ -1,7 +1,6 @@
 #ifndef CRIANCA_H
 #define CRIANCA_H
 
-#include "initialize_classes.h"
 #include "usuario.h"
 #include "adulto.h"
 #include <string>

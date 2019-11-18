@@ -1,5 +1,12 @@
-#include "maquina_fantoche.h"
+#include <algorithm>
+#include <vector>
 #include <sstream>
+#include "adulto.h"
+#include "crianca.h"
+#include "evento.h"
+#include "teatrofantoche.h"
+#include "maquina_fantoche.h"
+#include <string>
 
 MaquinaFantoche::MaquinaFantoche(std::vector<TeatroFantoche*> evs, Usuario* us) : Maquina(us){
     std::vector<TeatroFantoche*> vetor_fantoches;
@@ -46,9 +53,9 @@ void MaquinaFantoche::mostra_maquina(){
         int cr_escolha;
         cout << "Lista de seus dependentes" << endl;
         Usuario* us = get_usuario();
-        Adulto* ad = (Adulto*)(us);
+        Adulto *ad = (Adulto*)us;
 
-        for (Crianca* dep : ( ad )->get_dependentes() ) {
+        for (Crianca* dep : ad->get_dependentes() ) {
             cout << dep->get_nome() << " " << dep->get_id();
         }
         cout << "Digite o ID do seu dependente de escolha: " << endl;
@@ -76,6 +83,7 @@ void MaquinaFantoche::mostra_maquina(){
             mostra_maquina();
             return;
         }
+    }
 }
 
 std::string MaquinaFantoche::mostra_ingressos_disponiveis(TeatroFantoche* evento){
@@ -89,7 +97,6 @@ std::string MaquinaFantoche::mostra_ingressos_disponiveis(TeatroFantoche* evento
         result << "\t\t\tPreco: " << prec[i] << endl;
     }
 
-    result << endl << "\t\tQuota de idosos: " << evento->get_quota_idoso() << endl;
     return result.str();
 }
 
@@ -103,10 +110,42 @@ TeatroFantoche* MaquinaFantoche::acha_evento_por_id(int id){
 }
 
 Crianca* MaquinaFantoche::acha_crianca_por_id(int i){
-    for( Crianca* cr : (get_usuario())->get_dependentes() ) {
+    for( Crianca* cr : ((Adulto*)get_usuario())->get_dependentes() ) {
         if (cr->get_id() == i) {
             return cr;
         }
     }
     return nullptr;
+}
+
+int MaquinaFantoche::calcula_preco_total(){
+    vector<int> cap = ev_escolha->get_capacidades();
+    vector<int> prec = ev_escolha->get_precos();
+    int min_index;
+    std::vector<int>::iterator it;
+    int total = 0;
+    int i = 0;
+    while(qtd_ingressos > 0){
+        if(cap[i] > 0){
+            if(qtd_ingressos >= cap[i]){
+                qtd_ingressos-=cap[i];
+                total += cap[i]*prec[i];
+            }else{
+                cap[i]-=qtd_ingressos;
+                total += qtd_ingressos*prec[i];
+                qtd_ingressos = 0;
+            }
+        }
+        i++;
+    }
+    return total;
+}
+
+int MaquinaFantoche::total_de_ingressos(){
+    int total = 0;
+    vector<int> caps = ev_escolha->get_capacidades();
+    for(int i = 0; i < caps.size(); i++){
+        total += caps[i];
+    }
+    return total;
 }

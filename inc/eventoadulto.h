@@ -1,7 +1,7 @@
 #ifndef EVENTO_ADULTO_H
 #define EVENTO_ADULTO_H
 
-#include "initialize_classes.h"
+
 #include "evento.h"
 #include "usuario.h"
 #include <string>

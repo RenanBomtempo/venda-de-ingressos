@@ -1,7 +1,6 @@
 #ifndef ADULTO_H
 #define ADULTO_H
 
-#include "initialize_classes.h"
 #include "usuario.h"
 #include "crianca.h"
 #include <vector>

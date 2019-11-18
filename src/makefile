@@ -1,9 +1,8 @@
 # Flags de compilação
 CPP = g++
-OBJ = g++ -c
-CFLAGS = -g -Wall -I../inc/
+CFLAGS = -g -I../inc/
 OUT = -o main.out
-DONT_MAKE = main.cpp compra_ingresso.cpp
+DONT_MAKE = main.cpp 
 SOURCES = $(filter-out $(DONT_MAKE),$(wildcard *.cpp))
 OBJETOS = $(SOURCES:.cpp=.o)
 

@@ -1,7 +1,7 @@
 #ifndef BOATE_H
 #define BOATE_H
 
-#include "initialize_classes.h"
+
 #include "eventoadulto.h"
 #include "usuario.h"
 #include <string>
