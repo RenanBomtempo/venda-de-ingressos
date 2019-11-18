@@ -1,65 +1,60 @@
-#include "maquina_boate.h"
-#include "boate.h"
+#include "maquina_cinema.h"
+#include "cinema.h"
 #include <algorithm>
 #include <vector>
 #include <sstream>
 
-using namespace std;
-
-MaquinaBoate::MaquinaBoate(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
-    std::vector<Boate*> vetor_boates;
+MaquinaCinema::MaquinaCinema(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
+    std::vector<Cinema*> vetor_cinema;
 
     for(Evento* evento : evs) {
         switch (evento->get_categoria()) {
-            case E_ADULTO:
-                switch (evento->get_sub_categoria()) {
-                    case BOATE:
-                        vetor_boates.push_back(dynamic_cast<Boate*>(evento));
-                        break;
-                }
+            case CINEMA:
+                vetor_cinema.push_back(dynamic_cast<Cinema*>(evento));
+                break;
             default:
                 break;
         }
     }
-    eventos = vetor_boates;
+    eventos = vetor_cinema;
     ev_escolha = nullptr;
     qtd_ingressos = 0;
 }
 
-void MaquinaBoate::mostra_maquina(){
-    cout << "----------------------Máquina de ingressos----------------------" << endl;
-    cout << "-----------------------------Boates-----------------------------" << endl << endl;
+void MaquinaCinema::mostra_maquina(){
+    std::cout << "----------------------Máquina de ingressos----------------------" << endl;
+    std::cout << "----------------------------Cinema------------------------------" << endl << endl;
     for(auto evento: eventos){
-        cout << evento->get_id() << " - "<< evento->get_nome() << ":" << endl;
-        cout << "\tIngressos disponiveis:" << endl;
-        cout << mostra_ingressos_disponiveis(evento);
+        std::cout << evento->get_id() << " - "<< evento->get_nome() << ":" << endl;
+        std::cout << "\tIngressos disponiveis:" << endl;
+        std::cout << mostra_ingressos_disponiveis(evento);
     }
-    cout << endl << endl << "----------------------------------------------------------------" << endl;
+    std::cout << endl << endl << "----------------------------------------------------------------" << endl;
     int id_escolha;
-    cout << "Digite o id do evento escolhido ou o número -1 caso deseje voltar ao menu anterior." << endl;
-    cin >> id_escolha;
+    std::cout << "Digite o id do evento escolhido ou o número -1 caso deseje voltar ao menu anterior." << endl;
+    std::cin >> id_escolha;
     if(id_escolha == -1){
         return;
     }else{
         ev_escolha = acha_evento_por_id(id_escolha);
         if(ev_escolha == nullptr){
-            cout << "ERRO: Por favor, escolha um id valido." << endl;
+            std::cout << "ERRO: Por favor, escolha um id valido." << endl;
             mostra_maquina();
             return;
         }
     }
-    cout << "Digite a quantidade de ingressos que deseja comprar." << endl;
-    cin >> qtd_ingressos;
+    std::cout << "Digite a quantidade de ingressos que deseja comprar." << endl;
+    std::cin >> qtd_ingressos;
     if(qtd_ingressos < 0 || qtd_ingressos > total_de_ingressos()){
-        cout << "Numero de ingressos inválido." << endl;
+        std::cout << "Numero de ingressos inválido." << endl;
         mostra_maquina();
         return;
     }
     std::string confirma;
 
-    cout << "O custo total e: " << calcula_preco_total() << endl;
-    cout << "Confirmar compra? (S ou N)" << endl;
-    cin >> confirma;
+    std::cout << "O custo total e: " << calcula_preco_total() << endl;
+    std::cout << "Confirmar compra? (S ou N)" << endl;
+    std::cin >> confirma;
     if (confirma == "S" || confirma == "s"){
 
     }else{
@@ -68,7 +63,7 @@ void MaquinaBoate::mostra_maquina(){
     }
 }
 
-string MaquinaBoate::mostra_ingressos_disponiveis(Boate* evento){
+string MaquinaCinema::mostra_ingressos_disponiveis(Cinema* evento){
     vector<int> cap = evento->get_capacidades();
     vector<int> prec = evento->get_precos();
     stringstream result;
@@ -79,11 +74,10 @@ string MaquinaBoate::mostra_ingressos_disponiveis(Boate* evento){
         result << "\t\t\tPreco: " << prec[i] << endl;
     }
 
-    result << endl << "\t\tQuota de idosos: " << evento->get_quota_idoso() << endl;
     return result.str();
 }
 
-int MaquinaBoate::calcula_preco_total(){
+int MaquinaCinema::calcula_preco_total(){
     vector<int> cap = ev_escolha->get_capacidades();
     vector<int> prec = ev_escolha->get_precos();
     int min_index;
@@ -106,7 +100,7 @@ int MaquinaBoate::calcula_preco_total(){
     return total;
 }
 
-Boate* MaquinaBoate::acha_evento_por_id(int id){
+Cinema* MaquinaCinema::acha_evento_por_id(int id){
     for(auto evento : eventos){
         if(evento->get_id()==id){
             return evento;
@@ -115,7 +109,7 @@ Boate* MaquinaBoate::acha_evento_por_id(int id){
     return nullptr;
 }
 
-int MaquinaBoate::total_de_ingressos(){
+int MaquinaCinema::total_de_ingressos(){
     int total = 0;
     vector<int> caps = ev_escolha->get_capacidades();
     for(int i = 0; i < caps.size(); i++){

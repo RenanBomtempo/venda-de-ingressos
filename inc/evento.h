@@ -36,4 +36,6 @@ class Evento {
         virtual int get_sub_categoria();
 };
 
+void exibirTelaDeEventos();
+
 #endif//EVENTO_H

@@ -11,7 +11,7 @@ class MaquinaBoate : Maquina{
         Boate* ev_escolha;
         std::vector<Boate*> eventos;
     public:
-        MaquinaBoate(std::vector<Boate*> evs, Usuario* us);
+        MaquinaBoate(std::vector<Evento*> evs, Usuario* us);
         void mostra_maquina();
         int calcula_preco_total();
         string mostra_ingressos_disponiveis(Boate* evento);
