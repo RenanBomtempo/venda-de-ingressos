@@ -15,9 +15,10 @@ class MaquinaFantoche : Maquina {
         MaquinaFantoche(std::vector<TeatroFantoche*> evs, Usuario* us);
         void mostra_maquina();
         int calcula_preco_total();
-        std::string mostra_ingressos_disponiveis();
+        std::string mostra_ingressos_disponiveis(TeatroFantoche* evento);
         TeatroFantoche* acha_evento_por_id(int id);
         int total_de_ingressos();
+        Crianca* acha_crianca_por_id(int i);
 };
 
 #endif //MAQUINA_TEATROFANTOCHE_H

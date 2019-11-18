@@ -1,8 +1,23 @@
 #include "maquina_fantoche.h"
+#include <sstream>
 
-MaquinaFantoche::MaquinaFantoche(std::vector<TeatroFantoche*> evs, Usuario* us){
-    eventos = evs;
-    usuario = us;
+MaquinaFantoche::MaquinaFantoche(std::vector<TeatroFantoche*> evs, Usuario* us) : Maquina(us){
+    std::vector<TeatroFantoche*> vetor_fantoches;
+
+    for(Evento* evento : evs) {
+        switch (evento->get_categoria()) {
+            case E_INFANTIL:
+                switch (evento->get_sub_categoria()) {
+                    case FANTOCHE:
+                        vetor_fantoches.push_back(dynamic_cast<TeatroFantoche*>(evento));
+                        break;
+                }
+            default:
+                break;
+        }
+    }
+    eventos = vetor_fantoches;
+    ev_escolha = nullptr;
     qtd_ingressos = 0;
 }
 
@@ -28,6 +43,21 @@ void MaquinaFantoche::mostra_maquina(){
             return;
         }
 
+        int cr_escolha;
+        cout << "Lista de seus dependentes" << endl;
+        Usuario* us = get_usuario();
+        Adulto* ad = (Adulto*)(us);
+
+        for (Crianca* dep : ( ad )->get_dependentes() ) {
+            cout << dep->get_nome() << " " << dep->get_id();
+        }
+        cout << "Digite o ID do seu dependente de escolha: " << endl;
+        cin >> cr_escolha;
+        while ( acha_crianca_por_id(cr_escolha) == nullptr ) {
+            cout << "Digite um ID de um dependente valido: ";
+            cin >> cr_escolha;
+        }
+
         cout << "Digite a quantidade de ingressos que deseja comprar." << endl;
         cin >> qtd_ingressos;
         if(qtd_ingressos < 0 || qtd_ingressos > total_de_ingressos()){
@@ -48,10 +78,35 @@ void MaquinaFantoche::mostra_maquina(){
         }
 }
 
-std::string mostra_ingressos_disponiveis(){
+std::string MaquinaFantoche::mostra_ingressos_disponiveis(TeatroFantoche* evento){
+    vector<int> cap = evento->get_capacidades();
+    vector<int> prec = evento->get_precos();
+    stringstream result;
 
+    for(size_t i = 0; i < cap.size(); i++){
+        result << "\t\tLote #" << i+1 << ": " << endl;
+        result << "\t\t\tQuantidade disponivel: " << cap[i] << endl;
+        result << "\t\t\tPreco: " << prec[i] << endl;
+    }
+
+    result << endl << "\t\tQuota de idosos: " << evento->get_quota_idoso() << endl;
+    return result.str();
 }
 
-TeatroFantoche* acha_evento_por_id(int id){
+TeatroFantoche* MaquinaFantoche::acha_evento_por_id(int id){
+    for(auto evento : eventos){
+        if(evento->get_id()==id){
+            return evento;
+        }
+    }
+    return nullptr;
+}
 
+Crianca* MaquinaFantoche::acha_crianca_por_id(int i){
+    for( Crianca* cr : (get_usuario())->get_dependentes() ) {
+        if (cr->get_id() == i) {
+            return cr;
+        }
+    }
+    return nullptr;
 }
