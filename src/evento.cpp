@@ -24,7 +24,6 @@ vector<int> Evento::get_precos() {
     return precos;
 }
 
-
 Usuario *Evento::get_dono() {
     return dono;
 }

@@ -6,8 +6,22 @@
 
 using namespace std;
 
-MaquinaBoate::MaquinaBoate(std::vector<Boate*> evs, Usuario* us) : Maquina(us){
-    eventos = evs;
+MaquinaBoate::MaquinaBoate(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
+    std::vector<Boate*> vetor_boates;
+
+    for(Evento* evento : evs) {
+        switch (evento->get_categoria()) {
+            case E_ADULTO:
+                switch (evento->get_sub_categoria()) {
+                    case BOATE:
+                        vetor_boates.push_back(dynamic_cast<Boate*>(evento));
+                        break;
+                }
+            default:
+                break;
+        }
+    }
+    eventos = vetor_boates;
     ev_escolha = nullptr;
     qtd_ingressos = 0;
 }
@@ -29,8 +43,7 @@ void MaquinaBoate::mostra_maquina(){
     }else{
         ev_escolha = acha_evento_por_id(id_escolha);
         if(ev_escolha == nullptr){
-            cout << "Por favor, escolha um id valido." << endl;
-            mostra_maquina();
+            cout << "ERRO: Por favor, escolha um id valido." << endl;
             return;
         }
     }

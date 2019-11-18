@@ -25,7 +25,124 @@
 
 using namespace std;
 
-void limparDadosCarregados( vector<Usuario*> vetor_usuarios, vector<Evento*> vetor_eventos){
+void limparDadosCarregados(vector<Usuario*> vetor_usuarios, vector<Evento*> vetor_eventos);
+int main(){
+    vector<Usuario*> vetor_usuarios;
+    vector<Evento*> vetor_eventos;
+    string_table usuarios_table = CSVtoStringTable("../data/usuarios.csv");
+    string_table eventos_table  = CSVtoStringTable("../data/eventos.csv");
+    bool is_dados_carregados = false;
+
+    while (1) {
+        exibirMenu();
+        switch (lerInput('1', '4')) {
+        case 1:
+            if (!is_dados_carregados) {
+                cout << "CARREGANDO DADOS...\n";
+                vetor_usuarios = LerUsuarios(usuarios_table);
+                vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
+                cout << "----------------------------\n";
+                gerarSaida(vetor_usuarios, vetor_eventos);
+                cout << "----------------------------\n";
+                is_dados_carregados = true;
+            } else {
+                cout << "ERRO: Os dados de usuarios e eventos ja estao carregados.\n";
+                cout << "----------------------------\n";
+            }
+            break;
+        
+        case 2:
+            if (is_dados_carregados){
+                cout << "\nUSUARIOS CADASTRADOS:\n";
+                for (Usuario* u : vetor_usuarios){
+                    cout << "----------------------------\n";
+                    u->imprime();
+                }
+                
+            }
+            else {
+                cout << "ERRO: Os dados de usuarios e eventos nao foram carregados.\n";
+                cout << "----------------------------\n";
+                break;
+            }
+            break;
+            
+        case 3:
+            if (is_dados_carregados){
+                int id;
+                Usuario* comprador = nullptr;
+
+                cout << "Insira o ID do comprador: ";
+                cin >> id;
+
+                for(Usuario* u : vetor_usuarios) {
+                    if (u->get_id() == id) {
+                        comprador = u;
+                        if (u->get_tipo() == CRIANCA) {
+                            cout << "ERRO: Apenas ADULTOS e IDOSOS podem comprar ingressos.\n";
+                            cout << "----------------------------\n";
+                            break;
+                        }
+                        bool is_comprando = true;
+                        while(is_comprando){
+                            exibirTelaDeEventos();
+                            switch (lerInput('1', '5')) {
+                            case 1:
+                                /* code */
+                                break;
+                            case 2:
+                                /* code */
+                                break;
+                            case 3:
+                            {
+                                MaquinaBoate maq_boate(vetor_eventos, comprador);
+                                maq_boate.mostra_maquina();
+                            };
+                                break;
+                            case 4:
+                                /* code */
+                                break;
+                            case 5:
+                                is_comprando = false;
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (comprador == nullptr) {
+                    cout << "ERRO: O ID inserido nao esta cadastrado no sistema.\n";
+                    cout << "----------------------------\n";
+                    break;
+                }
+            }
+            else {
+                cout << "ERRO: Os dados de usuarios e eventos nao foram carregados.\n";
+                cout << "----------------------------\n";
+                break;
+            }
+            break;
+
+        case 4:
+            limparDadosCarregados(vetor_usuarios, vetor_eventos);
+            return 0;
+        default:
+            break;
+        }
+    }
+/*
+    
+*/
+
+// Delete all dynamically allocated data
+    limparDadosCarregados(vetor_usuarios, vetor_eventos);
+
+    return 0;
+}
+
+void limparDadosCarregados(vector<Usuario*> vetor_usuarios, vector<Evento*> vetor_eventos) {
     for (Usuario *u : vetor_usuarios) {
         //u->imprime();
         switch (u->get_tipo()) {
@@ -86,114 +203,4 @@ void limparDadosCarregados( vector<Usuario*> vetor_usuarios, vector<Evento*> vet
                 break;
         };
     }
-}
-
-int main(){
-    vector<Usuario*> vetor_usuarios;
-    vector<Evento*> vetor_eventos;
-    string_table usuarios_table = CSVtoStringTable("../data/usuarios.csv");
-    string_table eventos_table  = CSVtoStringTable("../data/eventos.csv");
-    bool is_dados_carregados = false;
-
-    exibirMenu();
-
-    while (1) {
-        switch (getInput()) {
-        case 1:
-            if (!is_dados_carregados) {
-                vetor_usuarios = LerUsuarios(usuarios_table);
-                vetor_eventos = LerEventos(eventos_table, vetor_usuarios);
-                cout << "----------------------------\n";
-                gerarSaida(vetor_usuarios, vetor_eventos);
-                cout << "----------------------------\n";
-                is_dados_carregados = true;
-            } else {
-                cout << "Os dados de usuarios e eventos ja estao carregados.\n";
-                cout << "----------------------------\n";
-            }
-            break;
-        
-        case 2:
-            if (is_dados_carregados){
-                cout << "\nUSUARIOS CADASTRADOS:\n";
-                for (Usuario* u : vetor_usuarios){
-                    cout << "----------------------------\n";
-                    u->imprime();
-                }
-                
-            }
-            else {
-                cout << "Os dados de usuarios e eventos nao foram carregados.\n";
-                cout << "----------------------------\n";
-                break;
-            }
-            break;
-            
-        case 3:
-            if (is_dados_carregados){
-                int id;
-                Usuario* comprador = nullptr;
-
-                cout << "Insira o ID do comprador: ";
-                cin >> id;
-
-                for(Usuario* u : vetor_usuarios) {
-                    if (u->get_id() == id) {
-                        comprador = u;
-                        if (u->get_tipo() == CRIANCA) {
-                            cout << "Apenas ADULTOS e IDOSOS podem comprar ingressos.\n";
-                            break;
-                        }
-                        // INICIAR PROCESSO DE COMPRA
-                        //
-                        //
-                        //
-                        //
-                    }
-                }
-
-                if (comprador == nullptr)
-                    cout << "O ID inserido nao esta cadastrado no sistema.\n";
-
-                break;
-            }
-            else {
-                cout << "Os dados de usuarios e eventos nao foram carregados.\n";
-                cout << "----------------------------\n";
-                break;
-            }
-            break;
-
-        case 4:
-            limparDadosCarregados(vetor_usuarios, vetor_eventos);
-            return 0;
-        default:
-            break;
-        }
-    }
-/*
-    std::vector<Boate*> vetor_boates;
-
-    for(Evento* evento : vetor_eventos) {
-        switch (evento->get_categoria()) {
-            case E_ADULTO:
-                switch (evento->get_sub_categoria()) {
-                    case BOATE:
-                        vetor_boates.push_back(dynamic_cast<Boate*>(evento));
-                        break;
-                }
-            default:
-                break;
-        }
-    }
-
-    MaquinaBoate maq_boate(vetor_boates, vetor_usuarios[0]);
-
-    maq_boate.mostra_maquina();
-*/
-
-// Delete all dynamically allocated data
-    limparDadosCarregados(vetor_usuarios, vetor_eventos);
-
-    return 0;
 }
