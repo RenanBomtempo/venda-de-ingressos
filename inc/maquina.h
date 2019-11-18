@@ -13,6 +13,7 @@ class Maquina {
         virtual void mostra_maquina(){};
         virtual int calcula_preco_total(){};
         virtual int total_de_ingressos(){};
+        Usuario* get_usuario();
 };
 
 #endif
