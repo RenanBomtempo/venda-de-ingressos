@@ -3,7 +3,7 @@ CPP = g++
 OBJ = g++ -c
 CFLAGS = -g -Wall -I../inc/
 OUT = -o main.out
-OBJETOS = usuario.o menu.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o saida.o
+OBJETOS = usuario.o menu.o evento.o crianca.o adulto.o idoso.o eventoinfantil.o teatrofantoche.o cinema.o eventoadulto.o show.o boate.o csvprocessor.o maquina.o maquina_boate.o maquina_cinema.o saida.o
 
 all: main clear
 
@@ -50,6 +50,9 @@ evento.o:
 
 maquina.o: evento.o usuario.o
 	$(OBJ) maquina.cpp $(CFLAGS)
+
+maquina_cinema.o: evento.o usuario.o
+	$(OBJ) maquina_cinema.cpp $(CFLAGS)
 
 csvprocessor.o:
 	$(OBJ) csvprocessor.cpp $(CFLAGS)

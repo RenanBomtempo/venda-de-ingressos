@@ -8,6 +8,7 @@ Usuario::Usuario(int i, string n, int idad, float s, int t){
     idade = idad;
     saldo = s;
     tipo = t;
+    num_ing_comprados = 0;
 }
 
 Usuario::~Usuario () {}

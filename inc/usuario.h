@@ -20,6 +20,7 @@ class Usuario {
         int idade;
         float saldo;
         int tipo;
+        int num_ing_comprados;
     public:
         Usuario(int i, string n, int idad, float s, int t);
         virtual ~Usuario();

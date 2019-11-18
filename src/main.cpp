@@ -15,6 +15,7 @@
 // Maquinas de eventos
 #include "maquina.h"
 #include "maquina_boate.h"
+#include "maquina_cinema.h"
 
 // Bibliotecas std
 #include "csvprocessor.h"
@@ -88,10 +89,16 @@ int main(){
                             exibirTelaDeEventos();
                             switch (lerInput('1', '5')) {
                             case 1:
-                                /* code */
+                            {
+                                MaquinaCinema maq_cinema(vetor_eventos, comprador);
+                                maq_cinema.mostra_maquina();
+                            };
                                 break;
                             case 2:
-                                /* code */
+                            {
+                                //MaquinaShow maq_show(vetor_eventos, comprador);
+                                //maq_show.mostra_maquina();
+                            };
                                 break;
                             case 3:
                             {
@@ -100,7 +107,10 @@ int main(){
                             };
                                 break;
                             case 4:
-                                /* code */
+                            {
+                                //MaquinaFantoche maq_fantoche(vetor_eventos, comprador);
+                                //maq_fantoche.mostra_maquina();
+                            };
                                 break;
                             case 5:
                                 is_comprando = false;
@@ -132,9 +142,6 @@ int main(){
             break;
         }
     }
-/*
-    
-*/
 
 // Delete all dynamically allocated data
     limparDadosCarregados(vetor_usuarios, vetor_eventos);
