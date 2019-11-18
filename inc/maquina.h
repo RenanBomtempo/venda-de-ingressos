@@ -2,6 +2,7 @@
 #define MAQUINA_H
 
 #include "evento.h"
+#include "usuario.h"
 #include <vector>
 
 class Maquina {

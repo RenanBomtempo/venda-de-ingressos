@@ -16,6 +16,8 @@
 #include "maquina.h"
 #include "maquina_boate.h"
 #include "maquina_cinema.h"
+#include "maquina_show.h"
+#include "maquina_fantoche.h"
 
 // Bibliotecas std
 #include "csvprocessor.h"
@@ -96,8 +98,8 @@ int main(){
                                 break;
                             case 2:
                             {
-                                //MaquinaShow maq_show(vetor_eventos, comprador);
-                                //maq_show.mostra_maquina();
+                                MaquinaShow maq_show(vetor_eventos, comprador);
+                                maq_show.mostra_maquina();
                             };
                                 break;
                             case 3:
