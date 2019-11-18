@@ -29,7 +29,7 @@ class Usuario {
         int get_idade();
         float get_saldo();
         int get_tipo();
-        int gasta_saldo(int gasto);
+        string gasta_saldo(int gasto);
         virtual void imprime();
 };
 

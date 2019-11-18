@@ -29,12 +29,12 @@ float Usuario::get_saldo(){
     return saldo;
 }
 
-int Usuario::gasta_saldo(int gasto){
+string Usuario::gasta_saldo(int gasto){
     if(saldo >= gasto){
         saldo -= gasto;
-        return 0;
+        return "Pagamento efetuado com sucesso.\n";
     }else{
-        return 1;
+        return "Saldo insuficiente.\n";
     }
 }
 
