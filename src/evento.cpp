@@ -1,5 +1,6 @@
 #include "evento.h"
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -20,6 +21,11 @@ Evento::~Evento() {}
 vector<int> Evento::get_capacidades() {
     return capacidades;
 }
+
+void Evento::gasta_capacidades(int index, int qtd) {
+    capacidades[index] -= qtd;
+}
+
 vector<int> Evento::get_precos() {
     return precos;
 }

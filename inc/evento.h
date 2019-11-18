@@ -29,6 +29,7 @@ class Evento {
         vector<int> get_capacidades();
         vector<int> get_precos();
         int get_preco_atual();
+        void gasta_capacidades(int index, int qtd);
         Usuario *get_dono();
         int get_categoria();
         int get_id();
