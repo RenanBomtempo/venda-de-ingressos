@@ -53,7 +53,7 @@ int main(){
                 cout << "----------------------------\n";
             }
             break;
-        
+
         case 2:
             if (is_dados_carregados){
                 cout << "\nUSUARIOS CADASTRADOS:\n";
@@ -61,7 +61,7 @@ int main(){
                     cout << "----------------------------\n";
                     u->imprime();
                 }
-                
+
             }
             else {
                 cout << "ERRO: Os dados de usuarios e eventos nao foram carregados.\n";
@@ -69,7 +69,7 @@ int main(){
                 break;
             }
             break;
-            
+
         case 3:
             if (is_dados_carregados){
                 int id;
@@ -110,8 +110,8 @@ int main(){
                                 break;
                             case 4:
                             {
-                                //MaquinaFantoche maq_fantoche(vetor_eventos, comprador);
-                                //maq_fantoche.mostra_maquina();
+                                MaquinaFantoche maq_fantoche(vetor_eventos, comprador);
+                                maq_fantoche.mostra_maquina();
                             };
                                 break;
                             case 5:

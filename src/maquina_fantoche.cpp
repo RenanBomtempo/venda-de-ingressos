@@ -8,7 +8,7 @@
 #include "maquina_fantoche.h"
 #include <string>
 
-MaquinaFantoche::MaquinaFantoche(std::vector<TeatroFantoche*> evs, Usuario* us) : Maquina(us){
+MaquinaFantoche::MaquinaFantoche(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
     std::vector<TeatroFantoche*> vetor_fantoches;
 
     for(Evento* evento : evs) {
@@ -56,7 +56,7 @@ void MaquinaFantoche::mostra_maquina(){
         Adulto *ad = (Adulto*)us;
 
         for (Crianca* dep : ad->get_dependentes() ) {
-            cout << dep->get_nome() << " " << dep->get_id();
+            cout << dep->get_nome() << " " << dep->get_id() << endl;
         }
         cout << "Digite o ID do seu dependente de escolha: " << endl;
         cin >> cr_escolha;

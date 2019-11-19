@@ -12,7 +12,7 @@ class MaquinaFantoche : Maquina {
         std::vector<TeatroFantoche*> eventos;
         Crianca* dependente;
     public:
-        MaquinaFantoche(std::vector<TeatroFantoche*> evs, Usuario* us);
+        MaquinaFantoche(std::vector<Evento*> evs, Usuario* us);
         void mostra_maquina();
         int calcula_preco_total();
         std::string mostra_ingressos_disponiveis(TeatroFantoche* evento);
