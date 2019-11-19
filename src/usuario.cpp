@@ -38,17 +38,17 @@ string Usuario::gasta_saldo(int gasto){
     }
 }
 
-
 int Usuario::get_tipo(){
     return tipo;
 }
 
 void Usuario::imprime(){
-    cout << "Id: " << id << endl;
-    cout << "Nome: " << nome << endl;
-    cout << "Idade: " << idade << endl;
-    cout << "Saldo: R$" << saldo << endl;
-    cout << "Categoria: ";
+    cout << "\tId: " << id << endl;
+    cout << "\tNome: " << nome << endl;
+    cout << "\tIdade: " << idade << endl;
+    cout << "\tSaldo: R$" << saldo << endl;
+    cout << "\tNumero de ingressos comprados: " << num_ing_comprados << endl;
+    cout << "\tCategoria: ";
     switch (tipo) {
     case ADULTO:
         cout << "Adulto\n";
@@ -59,4 +59,12 @@ void Usuario::imprime(){
     default:
         break;
     }
+}
+
+void Usuario::incrementar_ingressos_comprados(int qtd) {
+    num_ing_comprados += qtd;
+}
+
+int Usuario::get_ingressos_comprados() {
+    return num_ing_comprados;
 }

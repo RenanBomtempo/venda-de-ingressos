@@ -19,6 +19,7 @@ class Evento {
         int categoria;
         vector<int> capacidades;
         vector<int> precos;
+        int ingressos_vendidos = 0;
     public:
         Evento(int i, string n, Usuario* d, int c);
         Evento(int i, string n, Usuario* d, int c,
@@ -34,7 +35,8 @@ class Evento {
         int get_id();
         void add_ingresso(int c, int p);
         virtual int get_sub_categoria();
-        virtual void gasta_ingressos(Usuario* us, int qtd);
+        void incrementar_ingressos_vendidos(int qtd);
+        int get_ingressos_vendidos();
 };
 
 void exibirTelaDeEventos();

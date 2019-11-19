@@ -138,6 +138,39 @@ int main(){
             break;
 
         case 4:
+            cout << "USUARIOS QUE COMPRARAM INGRESSOS: " << endl;
+            for (Usuario* u : vetor_usuarios) {
+                if (u->get_ingressos_comprados() > 0) {
+                    if (u->get_tipo() == CRIANCA){
+                        u = (dynamic_cast<Crianca*>(u))->get_responsavel();
+                    }
+                    cout << "\tID: " << u->get_id() << " | Nome: " << u->get_nome() << endl;
+                    cout << "\tNumero de ingressos comprados: " << u->get_ingressos_comprados() << endl;
+                    cout << "\tSaldo: " << u->get_saldo() << endl;
+
+                    std::vector<Crianca*> dep = (dynamic_cast<Adulto*>(u))->get_dependentes();
+                    if (!dep.empty()) {
+                        std::cout << "\tDEPENDENTES:\n";
+                        for (Crianca* c : dep) {
+                            cout << "\t\t----------------------\n";
+                            cout << "\t\tID: " << c->get_id() << " | Nome: " << c->get_nome() << endl;
+                            cout << "\t\tNumero de ingressos comprados: " << c->get_ingressos_comprados() << endl;
+                            cout << "\t\tSaldo: " << c->get_saldo() << endl;
+                        }
+                    }
+                    cout << "\t----------------------\n";
+                }
+            }
+
+            cout << "EVENTOS COM INGRESSOS VENDIDOS: " << endl;
+            for (Evento* e : vetor_eventos) {
+                if (e->get_ingressos_vendidos() > 0) {
+                    cout << "\tID: " << e->get_id() << " | Nome: " << e->get_nome() << endl;
+                    cout << "\tNumero de ingressos vendidos: " << e->get_ingressos_vendidos() << endl;
+                    cout << "\t----------------------\n";
+                }
+            }
+            
             limparDadosCarregados(vetor_usuarios, vetor_eventos);
             return 0;
         default:

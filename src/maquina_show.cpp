@@ -63,9 +63,7 @@ void MaquinaShow::mostra_maquina(){
     cout << "Confirmar compra? (S ou N)" << endl;
     cin >> confirma;
     if (confirma == "S" || confirma == "s"){
-        cout << get_usuario()->get_saldo() << endl;
         cout << realiza_compra(preco_total);
-        cout << get_usuario()->get_saldo() << endl;
     }else{
         mostra_maquina();
         return;
@@ -75,7 +73,9 @@ void MaquinaShow::mostra_maquina(){
 string MaquinaShow::realiza_compra(int preco_total){
     string result = get_usuario()->gasta_saldo(preco_total);
     if(result == "Pagamento efetuado com sucesso.\n"){
+        get_usuario()->incrementar_ingressos_comprados(qtd_ingressos);
         ev_escolha->gasta_ingressos(get_usuario(), qtd_ingressos);
+        ev_escolha->incrementar_ingressos_vendidos(qtd_ingressos);
     }
     qtd_ingressos = 0;
     return result;

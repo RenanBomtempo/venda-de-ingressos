@@ -51,20 +51,25 @@ void MaquinaFantoche::mostra_maquina(){
         }
 
         int cr_escolha;
-        cout << "Lista de seus dependentes" << endl;
         Usuario* us = get_usuario();
         Adulto *ad = (Adulto*)us;
 
-        for (Crianca* dep : ad->get_dependentes() ) {
-            cout << dep->get_id() << " " << dep->get_nome() << " " << dep->get_saldo() << endl;
-        }
-        cout << "Digite o ID do seu dependente de escolha: " << endl;
-        cin >> cr_escolha;
-        while ( acha_crianca_por_id(cr_escolha) == nullptr ) {
-            cout << "Digite um ID de um dependente valido: ";
+        if (ad->get_dependentes().size()){
+            cout << "Lista de seus dependentes:" << endl;
+            for (Crianca* dep : ad->get_dependentes() ) {
+                cout << "\t" << dep->get_id() << " - " << dep->get_nome() << " - " << dep->get_saldo() << endl;
+            }
+            cout << "Digite o ID do seu dependente de escolha: " << endl;
             cin >> cr_escolha;
+            while ( acha_crianca_por_id(cr_escolha) == nullptr ) {
+                cout << "Digite um ID de um dependente valido: ";
+                cin >> cr_escolha;
+            }
+        } else {
+            cout << "O usuario selecionado nao possui dependentes." << endl;
+            return;
         }
-
+        
         cout << "Digite a quantidade de ingressos que deseja comprar." << endl;
         cin >> qtd_ingressos;
         if(qtd_ingressos < 0 || qtd_ingressos > total_de_ingressos()){
@@ -77,16 +82,16 @@ void MaquinaFantoche::mostra_maquina(){
         int preco_total = calcula_preco_total();
         cout << "O custo total e: " << preco_total << endl;
         cout << "Confirmar compra? (S ou N)" << endl;
-        cout << calcula_preco_total() << endl;
 
         cin >> confirma;
         if (confirma == "S" || confirma == "s"){
             string result = acha_crianca_por_id(cr_escolha)->gasta_saldo(preco_total);
             if ( result == "Pagamento efetuado com sucesso.\n") {
+                acha_crianca_por_id(cr_escolha)->incrementar_ingressos_comprados(qtd_ingressos);
                 ev_escolha->gasta_ingressos(qtd_ingressos);
+                ev_escolha->incrementar_ingressos_vendidos(qtd_ingressos);
             }
             cout << result;
-            mostra_maquina();
             return;
         }else{
             mostra_maquina();

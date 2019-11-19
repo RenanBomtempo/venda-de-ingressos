@@ -29,6 +29,8 @@ class Usuario {
         int get_tipo();
         string gasta_saldo(int gasto);
         virtual void imprime();
+        void incrementar_ingressos_comprados(int qtd);
+        int get_ingressos_comprados();
 };
 
 class Crianca;

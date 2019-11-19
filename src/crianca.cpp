@@ -12,10 +12,11 @@ Adulto* Crianca::get_responsavel(){
 }
 
 void Crianca::imprime() {
-    cout << "Id: " << get_id() << endl;
-    cout << "Nome: " << get_nome() << endl;
-    cout << "Idade: " << get_idade() << endl;
-    cout << "Saldo: R$" << get_saldo() << endl;
-    cout << "Categoria: Crianca\n";
-    cout << "Responsavel: " << get_responsavel()->get_id() << endl;
+    cout << "\tId: " << get_id() << endl;
+    cout << "\tNome: " << get_nome() << endl;
+    cout << "\tIdade: " << get_idade() << endl;
+    cout << "\tSaldo: R$" << get_saldo() << endl;
+    cout << "\tNumero de ingressos comprados: " << get_ingressos_comprados() << endl;
+    cout << "\tCategoria: Crianca\n";
+    cout << "\tResponsavel: " << get_responsavel()->get_id() << endl;
 }
