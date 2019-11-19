@@ -13,7 +13,7 @@
 #include "eventoinfantil.h"
 #include "teatrofantoche.h"
 // Maquinas de eventos
-#include "maquina.h"
+#include "totem.h"
 #include "maquina_boate.h"
 #include "maquina_cinema.h"
 #include "maquina_show.h"

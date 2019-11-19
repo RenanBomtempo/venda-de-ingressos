@@ -1,7 +1,6 @@
 #ifndef CINEMA_H
 #define CINEMA_H
 
-
 #include "evento.h"
 #include <string>
 #include <vector>
@@ -20,6 +19,9 @@ class Cinema : public Evento{
                vector<int> ca, vector<int> p, int du,
                vector<int> h);
         void add_horario(int h);
+        int get_duracao();
+        vector<int> get_horarios();
+        void gasta_ingressos(int qtd);
 };
 
 #endif//CINEMA_H

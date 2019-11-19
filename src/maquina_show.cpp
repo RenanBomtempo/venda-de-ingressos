@@ -1,34 +1,36 @@
 #include "maquina_show.h"
 #include "show.h"
+#include "adulto.h"
+#include "idoso.h"
 #include <algorithm>
 #include <vector>
 #include <sstream>
 
 using namespace std;
 
-MaquinaShow::MaquinaShow(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
-    std::vector<Show*> vetor_boates;
+MaquinaShow::MaquinaShow(std::vector<Evento*> evs, Usuario* us) : Totem(us){
+    std::vector<Show*> vetor_shows;
 
     for(Evento* evento : evs) {
         switch (evento->get_categoria()) {
             case E_ADULTO:
                 switch (evento->get_sub_categoria()) {
                     case SHOW:
-                        vetor_boates.push_back(dynamic_cast<Show*>(evento));
+                        vetor_shows.push_back(dynamic_cast<Show*>(evento));
                         break;
                 }
             default:
                 break;
         }
     }
-    eventos = vetor_boates;
+    eventos = vetor_shows;
     ev_escolha = nullptr;
     qtd_ingressos = 0;
 }
 
 void MaquinaShow::mostra_maquina(){
     cout << "----------------------Máquina de ingressos----------------------" << endl;
-    cout << "-----------------------------Show-------------------------------" << endl << endl;
+    cout << "-----------------------------Boates-----------------------------" << endl << endl;
     for(auto evento: eventos){
         cout << evento->get_id() << " - "<< evento->get_nome() << ":" << endl;
         cout << "\tIngressos disponiveis:" << endl;
@@ -56,16 +58,27 @@ void MaquinaShow::mostra_maquina(){
         return;
     }
     std::string confirma;
-
-    cout << "O custo total e: " << calcula_preco_total() << endl;
+    int preco_total = calcula_preco_total();
+    cout << "O custo total e: " << preco_total << endl;
     cout << "Confirmar compra? (S ou N)" << endl;
     cin >> confirma;
     if (confirma == "S" || confirma == "s"){
-
+        cout << get_usuario()->get_saldo() << endl;
+        cout << realiza_compra(preco_total);
+        cout << get_usuario()->get_saldo() << endl;
     }else{
         mostra_maquina();
         return;
     }
+}
+
+string MaquinaShow::realiza_compra(int preco_total){
+    string result = get_usuario()->gasta_saldo(preco_total);
+    if(result == "Pagamento efetuado com sucesso.\n"){
+        ev_escolha->gasta_ingressos(get_usuario(), qtd_ingressos);
+    }
+    qtd_ingressos = 0;
+    return result;
 }
 
 string MaquinaShow::mostra_ingressos_disponiveis(Show* evento){
@@ -87,9 +100,9 @@ int MaquinaShow::calcula_preco_total(){
     vector<int> cap = ev_escolha->get_capacidades();
     vector<int> prec = ev_escolha->get_precos();
     int min_index;
-    std::vector<int>::iterator it;
     int total = 0;
     int i = 0;
+    int aux_qtd = qtd_ingressos;
     while(qtd_ingressos > 0){
         if(cap[i] > 0){
             if(qtd_ingressos >= cap[i]){
@@ -103,6 +116,7 @@ int MaquinaShow::calcula_preco_total(){
         }
         i++;
     }
+    qtd_ingressos = aux_qtd;
     return total;
 }
 

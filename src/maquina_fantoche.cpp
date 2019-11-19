@@ -8,7 +8,7 @@
 #include "maquina_fantoche.h"
 #include <string>
 
-MaquinaFantoche::MaquinaFantoche(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
+MaquinaFantoche::MaquinaFantoche(std::vector<Evento*> evs, Usuario* us) : Totem(us){
     std::vector<TeatroFantoche*> vetor_fantoches;
 
     for(Evento* evento : evs) {

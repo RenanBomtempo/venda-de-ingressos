@@ -1,11 +1,12 @@
 #ifndef MAQUINA_CINEMA_H
 #define MAQUINA_CINEMA_H
 
-#include "maquina.h"
+#include "totem.h"
 #include "cinema.h"
 #include <vector>
+#include <string>
 
-class MaquinaCinema : Maquina{
+class MaquinaCinema : public Totem{
     private:
         int qtd_ingressos;
         Cinema* ev_escolha;
@@ -14,9 +15,11 @@ class MaquinaCinema : Maquina{
         MaquinaCinema(std::vector<Evento*> evs, Usuario* us);
         void mostra_maquina();
         int calcula_preco_total();
-        string mostra_ingressos_disponiveis(Cinema* evento);
+        std::string mostra_ingressos_disponiveis(Cinema* evento);
         Cinema* acha_evento_por_id(int id);
         int total_de_ingressos();
+        std::string mostra_horarios(Cinema* evento);
+        string realiza_compra(int preco_total);
 };
 
 #endif

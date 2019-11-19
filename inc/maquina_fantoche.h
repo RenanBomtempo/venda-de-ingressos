@@ -1,11 +1,11 @@
 #ifndef MAQUINA_FANTOCHE_H
 #define MAQUINA_FANTOCHE_H
 
-#include "maquina.h"
+#include "totem.h"
 #include <vector>
 #include "teatrofantoche.h"
 
-class MaquinaFantoche : Maquina {
+class MaquinaFantoche : Totem {
     private:
         int qtd_ingressos;
         TeatroFantoche* ev_escolha;

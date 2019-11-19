@@ -7,7 +7,7 @@
 
 using namespace std;
 
-MaquinaBoate::MaquinaBoate(std::vector<Evento*> evs, Usuario* us) : Maquina(us){
+MaquinaBoate::MaquinaBoate(std::vector<Evento*> evs, Usuario* us) : Totem(us){
     std::vector<Boate*> vetor_boates;
 
     for(Evento* evento : evs) {
@@ -99,7 +99,6 @@ int MaquinaBoate::calcula_preco_total(){
     vector<int> cap = ev_escolha->get_capacidades();
     vector<int> prec = ev_escolha->get_precos();
     int min_index;
-    std::vector<int>::iterator it;
     int total = 0;
     int i = 0;
     int aux_qtd = qtd_ingressos;

@@ -1,11 +1,11 @@
 #ifndef MAQUINA_BOATE_H
 #define MAQUINA_BOATE_H
 
-#include "maquina.h"
+#include "totem.h"
 #include <vector>
 #include "boate.h"
 
-class MaquinaBoate : Maquina{
+class MaquinaBoate : Totem{
     private:
         int qtd_ingressos;
         Boate* ev_escolha;

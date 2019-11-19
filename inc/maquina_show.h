@@ -1,11 +1,11 @@
 #ifndef MAQUINA_SHOW_H
 #define MAQUINA_SHOW_H
 
-#include "maquina.h"
+#include "totem.h"
 #include "show.h"
 #include <vector>
 
-class MaquinaShow : Maquina{
+class MaquinaShow : Totem{
     private:
         int qtd_ingressos;
         Show* ev_escolha;
@@ -17,6 +17,7 @@ class MaquinaShow : Maquina{
         string mostra_ingressos_disponiveis(Show* evento);
         Show* acha_evento_por_id(int id);
         int total_de_ingressos();
+        string realiza_compra(int preco_total);
 };
 
 #endif

@@ -23,7 +23,7 @@ class EventoAdulto : public Evento{
                      vector<int> ca, vector<int> p, int q, int sc);
         int get_sub_categoria() override;
         int get_quota_idoso();
-        void gasta_ingressos(Usuario* us, int qtd);
+        void gasta_ingressos(Usuario* us, int qtd) override;
 };
 
 #endif//EVENTO_ADULTO_H

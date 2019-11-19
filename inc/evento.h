@@ -1,7 +1,6 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 
-
 #include "usuario.h"
 #include <vector>
 #include <string>
@@ -35,6 +34,7 @@ class Evento {
         int get_id();
         void add_ingresso(int c, int p);
         virtual int get_sub_categoria();
+        virtual void gasta_ingressos(Usuario* us, int qtd);
 };
 
 void exibirTelaDeEventos();

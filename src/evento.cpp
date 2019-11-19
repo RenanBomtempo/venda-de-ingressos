@@ -54,3 +54,19 @@ void Evento::add_ingresso(int c, int p){
 int Evento::get_sub_categoria(){
     return -1;
 }
+
+void Evento::gasta_ingressos(Usuario* us, int qtd){
+    printf("gasta ingresso\n");
+    vector<int> cap = get_capacidades();
+    vector<int> pre = get_precos();
+    int aux;
+    for(int i = 0; i < cap.size(); i++){
+        if(cap[i] > qtd){
+            gasta_capacidades(i, qtd);
+            return;
+        }else{
+            gasta_capacidades(i, cap[i]);
+        }
+    }
+    return;
+}
