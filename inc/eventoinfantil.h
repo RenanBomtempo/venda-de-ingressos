@@ -21,6 +21,7 @@ class EventoInfantil : public Evento{
         EventoInfantil(int i, string n, Usuario* d, int sc,
                        vector<int> ca, vector<int> p);
         int get_sub_categoria() override;
+        void gasta_ingressos(int qtd);
 };
 
 #endif//EVENTO_INFANTIL_H

@@ -30,7 +30,7 @@ MaquinaFantoche::MaquinaFantoche(std::vector<Evento*> evs, Usuario* us) : Maquin
 
 void MaquinaFantoche::mostra_maquina(){
     cout << "----------------------Máquina de ingressos----------------------" << endl;
-    cout << "-----------------------Teatro de Fantoches-----------------------" << endl << endl;
+    cout << "----------------------Teatro de Fantoches-----------------------" << endl << endl;
     for(auto evento: eventos){
         cout << evento->get_id() << " - "<< evento->get_nome() << ":" << endl;
         cout << "\tIngressos disponiveis:" << endl;
@@ -56,7 +56,7 @@ void MaquinaFantoche::mostra_maquina(){
         Adulto *ad = (Adulto*)us;
 
         for (Crianca* dep : ad->get_dependentes() ) {
-            cout << dep->get_nome() << " " << dep->get_id() << endl;
+            cout << dep->get_id() << " " << dep->get_nome() << " " << dep->get_saldo() << endl;
         }
         cout << "Digite o ID do seu dependente de escolha: " << endl;
         cin >> cr_escolha;
@@ -74,11 +74,20 @@ void MaquinaFantoche::mostra_maquina(){
         }
         std::string confirma;
 
-        cout << "O custo total e: " << calcula_preco_total() << endl;
+        int preco_total = calcula_preco_total();
+        cout << "O custo total e: " << preco_total << endl;
         cout << "Confirmar compra? (S ou N)" << endl;
+        cout << calcula_preco_total() << endl;
+
         cin >> confirma;
         if (confirma == "S" || confirma == "s"){
-
+            string result = acha_crianca_por_id(cr_escolha)->gasta_saldo(preco_total);
+            if ( result == "Pagamento efetuado com sucesso.\n") {
+                ev_escolha->gasta_ingressos(qtd_ingressos);
+            }
+            cout << result;
+            mostra_maquina();
+            return;
         }else{
             mostra_maquina();
             return;
@@ -121,7 +130,7 @@ Crianca* MaquinaFantoche::acha_crianca_por_id(int i){
 int MaquinaFantoche::calcula_preco_total(){
     vector<int> cap = ev_escolha->get_capacidades();
     vector<int> prec = ev_escolha->get_precos();
-    int min_index;
+    int aux_qtd = qtd_ingressos;
     std::vector<int>::iterator it;
     int total = 0;
     int i = 0;
@@ -138,6 +147,7 @@ int MaquinaFantoche::calcula_preco_total(){
         }
         i++;
     }
+    qtd_ingressos = aux_qtd;
     return total;
 }
 
