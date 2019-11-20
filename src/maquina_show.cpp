@@ -30,7 +30,7 @@ MaquinaShow::MaquinaShow(std::vector<Evento*> evs, Usuario* us) : Totem(us){
 
 void MaquinaShow::mostra_maquina(){
     cout << "----------------------Máquina de ingressos----------------------" << endl;
-    cout << "-----------------------------Boates-----------------------------" << endl << endl;
+    cout << "-----------------------------Shows------------------------------" << endl << endl;
     for(auto evento: eventos){
         cout << evento->get_id() << " - "<< evento->get_nome() << ":" << endl;
         cout << "\tIngressos disponiveis:" << endl;
